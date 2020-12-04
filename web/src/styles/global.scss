@@ -1,0 +1,58 @@
+@import "variables";
+$title-size: 48px;
+$mobile-title-size: 32px;
+body {
+    color: $main-color;
+    font-family: $font-family;
+    font-weight: 400;
+    background-color: white;
+    height: 100%;
+    a {
+        color: $main-color;
+    }
+    .impact {
+        font-family: $impact-family;
+    }
+}
+
+.expander {
+    >.main {
+        min-height: 500px;
+        position: relative;
+    }
+}
+
+.height-0 {
+    height: 0 !important;
+}
+
+h3.mixed-font-title {
+    font-size: $title-size;
+    text-align: center;
+    display: flex;
+    margin-bottom: 32px;
+    white-space: nowrap;
+     :not(.cursive) {
+        font-family: $impact-family;
+    }
+    .cursive {
+        font-family: $cursive-family;
+        height: $title-size + 6px;
+        border-bottom: 2px solid $main-color;
+        padding-bottom: 2px;
+        padding-left: 50px;
+        padding-right: 150px;
+        margin: 0 8px;
+    }
+}
+
+@media (max-width: $mobile-size) {
+    h3.mixed-font-title {
+        font-size: $mobile-title-size;
+        .cursive {
+            height: $mobile-title-size + 6px;
+            padding-left: 20px;
+            padding-right: 60px;
+        }
+    }
+}
