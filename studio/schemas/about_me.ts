@@ -1,6 +1,6 @@
 export default {
-  name: "carousel",
-  title: "Carousel",
+  name: "aboutMe",
+  title: "About Me",
   type: "document",
   __experimental_actions: ['update', 'publish'], 
   fields: [
@@ -10,26 +10,19 @@ export default {
       type: "string",
     },
     {
-      name: "subtitle",
-      title: "SubTitle",
-      type: "string",
-    },
-    {
       name: "body",
       title: "Body text",
       type: "array",
       of: [
         {
-          type: 'block'
-        }
-      ]
+          type: "block",
+        },
+      ],
     },
     {
-      title: "Slides",
-      name: "slides",
-      type: "array",
-      of: [{type: "alt_image"},
-      ],
+      name: "image",
+      title: "image",
+      type: "alt_image",
     },
   ],
 };

@@ -1,6 +1,11 @@
-@import "variables";
+@import 'variables';
+@import 'typography';
 $title-size: 48px;
 $mobile-title-size: 32px;
+html {
+    background-color: $accent-1;
+}
+
 body {
     color: $main-color;
     font-family: $font-family;
@@ -15,11 +20,9 @@ body {
     }
 }
 
-.expander {
-    >.main {
-        min-height: 500px;
-        position: relative;
-    }
+.main {
+    min-height: 500px;
+    position: relative;
 }
 
 .height-0 {

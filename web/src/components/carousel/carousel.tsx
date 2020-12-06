@@ -2,6 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import './carousel.scss';
+import BlockContent from '@sanity/block-content-to-react';
 
 const CarouselContainer = () => {
   const data = useStaticQuery(graphql`
@@ -11,7 +12,7 @@ const CarouselContainer = () => {
           node {
             subtitle
             title
-            body
+            _rawBody
             slides {
               alt
               asset {
@@ -43,7 +44,7 @@ const CarouselContainer = () => {
         <div className='col-12 col-lg-4 flex-shrink-1'>
           <h2>{data.title}</h2>
           <h3>{data.subtitle}</h3>
-          <p>{data.body}</p>
+          <BlockContent blocks={data._rawBody}></BlockContent>
         </div>
       </div>
       <div className='separator'></div>

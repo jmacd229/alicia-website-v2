@@ -1,0 +1,24 @@
+@import '../../styles/variables';
+.about-me {
+    .main {
+        padding: 32px;
+        background-color: white;
+        h3 {
+            flex-wrap: nowrap;
+            justify-content: center;
+        }
+        .body {
+            width: 600px;
+            p:last-child {
+                border-bottom: 2px solid $main-color;
+                padding-bottom: 32px;
+            }
+            padding-right: 48px;
+        }
+        .profile {
+            width: 50vw;
+            max-width: 350px;
+            max-height: 350px;
+        }
+    }
+}

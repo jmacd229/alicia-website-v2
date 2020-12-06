@@ -1,18 +1,17 @@
 @import "../../styles/variables";
-$nav-bar-height: 26px;
 $nav-bar-padding: 8px;
 .header {
     header {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: $accent-1;
+        background-color: $main-color;
         padding: 0 8px 8px 8px;
         width: 100%;
-        border-bottom: 16px solid $accent-1-dark;
+        border-bottom: 16px solid $accent-1;
         .nav-wrapper {
             position: fixed;
-            background-color: $accent-1-dark;
+            background-color: $accent-1;
             z-index: 100;
             width: 100%;
             display: flex;
@@ -40,7 +39,6 @@ $nav-bar-padding: 8px;
                 justify-content: space-evenly;
                 width: 70%;
                 max-width: 750px;
-                height: $nav-bar-height;
             }
             .btn {
                 font-weight: 300;
@@ -56,20 +54,23 @@ $nav-bar-padding: 8px;
         h1 {
             margin-top: 64px;
             height: 200px;
+            display: flex;
+            align-items: center;
             >img {
-                height: 200px;
+                height: 35vw;
+                max-height: 200px;
             }
         }
         .line {
-            border-bottom: 4px solid $accent-1-dark;
+            border-bottom: 4px solid $accent-1;
             width: 90%;
             display: flex;
             justify-content: center;
             >span {
                 width: 50px;
                 height: 50px;
-                border-left: 4px solid $accent-1-dark;
-                border-top: 4px solid $accent-1-dark;
+                border-left: 4px solid $accent-1;
+                border-top: 4px solid $accent-1;
                 transform: rotate(-135deg);
                 background-color: transparent;
                 margin-bottom: -26px;
@@ -90,19 +91,19 @@ $nav-bar-padding: 8px;
         height: 0;
         border-left: 10px solid transparent;
         border-right: 10px solid transparent;
-        border-top: 6px solid $accent-1-dark;
+        border-top: 6px solid $accent-1;
         transform: scale(7);
         position: absolute;
         z-index: 50;
         transition: border-top-color linear 100ms;
         &.scroll {
             position: fixed;
-            border-top-color: $accent-1-dark;
+            border-top-color: $accent-1;
         }
         &.light {
             top: 277px;
             z-index: 51;
-            border-top: 6px solid $accent-1;
+            border-top: 6px solid $main-color;
         }
     }
 }

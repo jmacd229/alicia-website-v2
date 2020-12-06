@@ -32,9 +32,6 @@ module.exports = {
             options: {
                 projectId: 'qfrilqbt',
                 dataset: 'production',
-                // a token with read permissions is required
-                // if you have a private dataset
-                token: process.env.MY_SANITY_TOKEN,
             },
         },
         `gatsby-plugin-sass`
