@@ -29,7 +29,7 @@ const CarouselContainer = () => {
     <div className='carousel'>
       <div className='main row no-gutters'>
         <div className='col-12 col-lg-8'>
-          <Carousel>
+          <Carousel controls={false} indicators={false}>
             {data.slides.map((slide, i) => (
               <Carousel.Item key={i}>
                 <img

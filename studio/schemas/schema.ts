@@ -7,6 +7,10 @@ import carousel from './carousel'
 import alt_image from './alt_image'
 import about_me from './about_me'
 import work from './work'
+import resources from './resources'
+import category from './category'
+import resource from './resource'
+import link from './link'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -18,6 +22,10 @@ export default createSchema({
     carousel,
     alt_image,
     about_me,
-    work
+    work,
+    resources,
+    category,
+    resource,
+    link
   ]),
 })

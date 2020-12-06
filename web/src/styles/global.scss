@@ -1,5 +1,4 @@
 @import 'variables';
-@import 'typography';
 $title-size: 48px;
 $mobile-title-size: 32px;
 html {
@@ -47,6 +46,11 @@ h3.mixed-font-title {
         padding-right: 150px;
         margin: 0 8px;
     }
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-size: 24px;
 }
 
 @media (max-width: $mobile-size) {

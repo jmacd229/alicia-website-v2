@@ -28,40 +28,6 @@
                 height: 100%;
             }
         }
-        .carousel-control-next {
-            justify-content: flex-end;
-            margin-right: 10px;
-            .carousel-control-next-icon {
-                border: solid $main-color;
-                border-width: 0 15px 15px 0;
-                display: inline-block;
-                padding: 15px;
-                transform: rotate(-45deg);
-                -webkit-transform: rotate(-45deg);
-                background: none;
-            }
-        }
-        .carousel-indicators {
-            li {
-                width: 8px;
-                height: 8px;
-                border-radius: 50%;
-                background-color: $accent-1-light;
-            }
-        }
-        .carousel-control-prev {
-            justify-content: flex-start;
-            margin-left: 10px;
-            .carousel-control-prev-icon {
-                border: solid $main-color;
-                border-width: 0 15px 15px 0;
-                display: inline-block;
-                padding: 15px;
-                transform: rotate(135deg);
-                -webkit-transform: rotate(135deg);
-                background: none;
-            }
-        }
     }
     .separator {
         width: 100%;

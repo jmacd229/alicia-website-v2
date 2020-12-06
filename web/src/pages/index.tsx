@@ -6,6 +6,7 @@ import '../styles/global.scss';
 import CarouselContainer from '../components/carousel/carousel';
 import AboutMe from '../components/about-me/about-me';
 import Work from '../components/work/work';
+import Resources from '../components/resources/resources';
 
 const IndexPage = () => (
   <Layout>
@@ -13,6 +14,7 @@ const IndexPage = () => (
     <CarouselContainer />
     <AboutMe />
     <Work/>
+    <Resources/>
   </Layout>
 );
 

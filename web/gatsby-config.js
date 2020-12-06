@@ -1,8 +1,8 @@
 module.exports = {
     siteMetadata: {
-        title: `Gatsby Default Starter`,
-        description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-        author: `@gatsbyjs`,
+        title: `Alicia MacDougall`,
+        description: `A website for Alicia MacDougall, Naturopathic doctor.`,
+        author: `Jesse MacDougall`,
     },
     plugins: [
         `gatsby-plugin-react-helmet`,
@@ -13,18 +13,30 @@ module.exports = {
                 path: `${__dirname}/src/images`,
             },
         },
+        {
+            resolve: 'gatsby-plugin-google-fonts',
+            options: {
+                fonts: [
+                    'material icons',
+                    'dancing script',
+                    'alfa slab one',
+                ],
+            },
+        },
         `gatsby-transformer-sharp`,
         `gatsby-plugin-sharp`,
         {
             resolve: `gatsby-plugin-manifest`,
             options: {
-                name: `gatsby-starter-default`,
-                short_name: `starter`,
+                lang: 'en',
+                name: `Alicia MacDougall`,
+                description: `This website is for Alicia MacDougalll, a Naturopathic doctor, used to serve her clients with resources, contact information, and booking.`,
+                short_name: `Alicia`,
                 start_url: `/`,
-                background_color: `#663399`,
-                theme_color: `#663399`,
+                background_color: `#ecf0f1`,
+                theme_color: `#55b8bb`,
                 display: `minimal-ui`,
-                icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+                icon: `src/images/alicia_logo_icon.svg`,
             },
         },
         {
