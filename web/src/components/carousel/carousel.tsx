@@ -42,7 +42,7 @@ const CarouselContainer = () => {
           </Carousel>
         </div>
         <div className='col-12 col-lg-4 flex-shrink-1'>
-          <h2>{data.title}</h2>
+          <h2 className="mb-0">{data.title}</h2>
           <h3>{data.subtitle}</h3>
           <BlockContent blocks={data._rawBody}></BlockContent>
         </div>

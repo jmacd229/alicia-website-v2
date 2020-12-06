@@ -23,7 +23,7 @@ $nav-bar-padding: 8px;
                 padding: 0;
                 &::before {
                     content: "";
-                    border: solid $accent-2;
+                    border: solid $accent-2-extra-light;
                     border-width: 3px 3px 0 0;
                     display: inline-block;
                     padding: 3px;
@@ -43,7 +43,7 @@ $nav-bar-padding: 8px;
             .btn {
                 font-weight: 300;
                 display: block;
-                color: $accent-2-light;
+                color: $accent-2-extra-light;
                 white-space: nowrap;
                 padding: 0 5px;
                 &:hover {

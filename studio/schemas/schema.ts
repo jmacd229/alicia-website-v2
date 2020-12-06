@@ -6,6 +6,7 @@ import schemaTypes from 'all:part:@sanity/base/schema-type'
 import carousel from './carousel'
 import alt_image from './alt_image'
 import about_me from './about_me'
+import work from './work'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -16,6 +17,7 @@ export default createSchema({
   types: schemaTypes.concat([
     carousel,
     alt_image,
-    about_me
+    about_me,
+    work
   ]),
 })
