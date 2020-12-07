@@ -1,0 +1,112 @@
+@import '../../styles/variables';
+.contact {
+    .main {
+        display: flex;
+        .title-card {
+            background-color: $accent-2-extra-light;
+            display: flex;
+            align-items: center;
+            width: 180px;
+            min-height: 500px;
+            justify-content: center;
+            border-right: 5px solid $main-color;
+            h3 {
+                transform: rotate(-90deg);
+                letter-spacing: 1px;
+                span:not(.cursive) {
+                    text-transform: uppercase;
+                }
+                .cursive {
+                    padding: 0 20px;
+                }
+            }
+        }
+        .methods {
+            flex-wrap: wrap;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            background-color: $accent-2-dark;
+            >div {
+                background-color: $accent-2;
+                transition: background-color 500ms linear;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: flex-end;
+                border: 6px solid $accent-2-extra-light;
+                margin: 20px;
+                >div:not(.title) {
+                    width: 300px;
+                    height: 300px;
+                    padding-bottom: 24px;
+                    font-size: 24px;
+                    margin-bottom: auto;
+                    margin-top: auto;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    .icon {
+                        width: 96px;
+                        height: 96px;
+                    }
+                    >strong {
+                        transition: color 500ms linear;
+                        font-size: 16px;
+                    }
+                }
+                .title {
+                    position: absolute;
+                    z-index: 1;
+                    font-family: $cursive-family;
+                    font-size: 48px;
+                    line-height: 40px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    width: 100%;
+                    border-top: 6px solid $accent-2-extra-light;
+                    background-color: $accent-2-extra-light;
+                    &::before {
+                        content: '';
+                        width: 40px;
+                        height: 40px;
+                        position: absolute;
+                        transform: rotate(45deg);
+                        border-top: 5px solid $accent-2-extra-light;
+                        border-left: 5px solid $accent-2-extra-light;
+                        background-color: $accent-2-extra-light;
+                        bottom: 24px;
+                        z-index: -1;
+                    }
+                }
+                &:hover {
+                    background-color: $accent-2-light;
+                    >div:not(.title)>strong {
+                        color: $accent-1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: $mobile-size) {
+    .contact .main {
+        flex-direction: column;
+        .title-card {
+            height: auto;
+            min-height: unset;
+            width: auto;
+            border-bottom: 5px solid #3e3e3e;
+            border-right: none;
+            h3 {
+                transform: none;
+                margin: 16px 0;
+            }
+        }
+    }
+}

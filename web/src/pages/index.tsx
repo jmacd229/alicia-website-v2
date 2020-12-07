@@ -7,6 +7,7 @@ import CarouselContainer from '../components/carousel/carousel';
 import AboutMe from '../components/about-me/about-me';
 import Work from '../components/work/work';
 import Resources from '../components/resources/resources';
+import Contact from '../components/contact/contact';
 
 const IndexPage = () => (
   <Layout>
@@ -15,6 +16,7 @@ const IndexPage = () => (
     <AboutMe />
     <Work/>
     <Resources/>
+    <Contact/>
   </Layout>
 );
 

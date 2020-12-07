@@ -152,7 +152,7 @@ $border: 10px;
             &.resources-expanded:not(.details-expanded) {
                 .resources {
                     width: 100%;
-                    border-left: 3px solid white;
+                    border-left: 3px solid $secondary-color-light;
                 }
                 .categories,
                 .details {
