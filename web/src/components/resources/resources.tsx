@@ -4,6 +4,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import './resources.scss';
 
 interface ResourceData {
+  visible: boolean;
   title: string;
   image: { asset: { url: string } };
   categories: Category[];
@@ -34,6 +35,7 @@ const Resources = () => {
       allSanityResources {
         edges {
           node {
+            visible
             title
             categories {
               name
@@ -104,11 +106,11 @@ const Resources = () => {
     }
   }
 
-  function clickCategory(category: Category){
-      if(activeResource) {
-          setResource(null);
-      }
-    setCategory(activeCategory === category ? null : category)
+  function clickCategory(category: Category) {
+    if (activeResource) {
+      setResource(null);
+    }
+    setCategory(activeCategory === category ? null : category);
   }
 
   function clickBack() {
@@ -122,44 +124,47 @@ const Resources = () => {
       }
     }
   }
-
-  return (
-    <div className='resources'>
-      <div
-        className='bg'
-        style={{ backgroundImage: `url('${data.image.asset.url}')` }}></div>
-      <div className='main'>
-        <div>
-          <h3 className='impact'>{data.title}</h3>
-          <button
-            tabIndex={activeCategory ? 0 : -1}
-            className={'back btn' + (activeCategory ? '' : ' height-0')}
-            onClick={clickBack}>
-            <i className='material-icons'>double_arrow</i> Back
-          </button>
-          <div
-            className={
-              'resources-container' +
-              (activeCategory ? ' resources-expanded' : '') +
-              (activeResource ? ' details-expanded' : '')
-            }>
-            <div className='categories' ref={categoriesRef}>
-              {getCategories()}
-            </div>
-            <div className='resources'>{getResources()}</div>
-            <div className={'details' + (activeResource ? '' : ' height-0')}>
-              <h4>{activeResource ? activeResource.title : ''}</h4>
-              {getLink()}
-              {activeResource && activeResource._rawDescription ? (
-                <BlockContent
-                  blocks={activeResource._rawDescription}></BlockContent>
-              ) : null}
+  if (data.visible) {
+    return (
+      <div className='resources'>
+        <div
+          className='bg'
+          style={{ backgroundImage: `url('${data.image.asset.url}')` }}></div>
+        <div className='main'>
+          <div>
+            <h3 className='impact'>{data.title}</h3>
+            <button
+              tabIndex={activeCategory ? 0 : -1}
+              className={'back btn' + (activeCategory ? '' : ' height-0')}
+              onClick={clickBack}>
+              <i className='material-icons'>double_arrow</i> Back
+            </button>
+            <div
+              className={
+                'resources-container' +
+                (activeCategory ? ' resources-expanded' : '') +
+                (activeResource ? ' details-expanded' : '')
+              }>
+              <div className='categories' ref={categoriesRef}>
+                {getCategories()}
+              </div>
+              <div className='resources'>{getResources()}</div>
+              <div className={'details' + (activeResource ? '' : ' height-0')}>
+                <h4>{activeResource ? activeResource.title : ''}</h4>
+                {getLink()}
+                {activeResource && activeResource._rawDescription ? (
+                  <BlockContent
+                    blocks={activeResource._rawDescription}></BlockContent>
+                ) : null}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return null;
+  }
 };
 
 export default Resources;

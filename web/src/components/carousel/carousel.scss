@@ -9,7 +9,7 @@
         >div:nth-child(2) {
             padding: 32px;
             h2 {
-                font-size: 2vw;
+                font-size: 1.8vw;
                 white-space: nowrap;
             }
             h3 {
@@ -23,7 +23,10 @@
     .carousel.slide {
         height: 100%;
         .carousel-inner {
+            background-color: $main-color;
             height: 100%;
+            display: flex;
+            align-items: center;
             >slide {
                 height: 100%;
             }
@@ -38,7 +41,6 @@
 
 @media (max-width: $medium-size) {
     .carousel .main>div:nth-child(2) h2 {
-        font-size: clamp(1rem, 5vw, 48px);
-        font-size: 5vw;
+        font-size: clamp(12px, 4.7vw, 42px);
     }
 }

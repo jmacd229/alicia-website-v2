@@ -17,7 +17,7 @@ $picture-offset: 70px;
             flex-grow: 1;
             z-index: 1;
             position: absolute;
-            right: 600px;
+            left: 5vw;
             background-color: $accent-2-light;
             width: 800px;
             height: 400px;
@@ -61,7 +61,7 @@ $picture-offset: 70px;
     }
 }
 
-@media (max-width: $large-size) {
+@media (max-width: $medium-size) {
     .work {
         .main {
             flex-direction: column-reverse;
@@ -72,7 +72,7 @@ $picture-offset: 70px;
             .caption {
                 margin-bottom: 0;
                 position: relative;
-                right: auto;
+                left: auto;
                 width: 100%;
                 height: auto;
                 h2 {

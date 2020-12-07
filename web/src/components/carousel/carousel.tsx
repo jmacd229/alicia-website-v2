@@ -28,7 +28,7 @@ const CarouselContainer = () => {
   return (
     <div className='carousel'>
       <div className='main row no-gutters'>
-        <div className='col-12 col-lg-8'>
+        <div className='col-12 col-lg-7'>
           <Carousel controls={false} indicators={false}>
             {data.slides.map((slide, i) => (
               <Carousel.Item key={i}>
@@ -41,8 +41,8 @@ const CarouselContainer = () => {
             ))}
           </Carousel>
         </div>
-        <div className='col-12 col-lg-4 flex-shrink-1'>
-          <h2 className="mb-0">{data.title}</h2>
+        <div className='col-12 col-lg-5 flex-shrink-1'>
+          <h2 className="mb-0 d-flex justify-content-center">{data.title}</h2>
           <h3>{data.subtitle}</h3>
           <BlockContent blocks={data._rawBody}></BlockContent>
         </div>

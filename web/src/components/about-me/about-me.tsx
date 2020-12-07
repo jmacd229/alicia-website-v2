@@ -25,19 +25,17 @@ const AboutMe = () => {
   return (
     <div className='about-me'>
       <div className='main'>
-        <h3 className='mixed-font-title row no-gutters'>
+        <h3 className='mixed-font-title'>
           <div>{data.title.substr(0, data.title.lastIndexOf(' '))}</div>
           <div className='cursive'>
             {data.title.substr(data.title.lastIndexOf(' '))}
           </div>
           <div>.</div>
         </h3>
-        <div className='row no-gutters justify-content-center'>
-          <div className='col-lg-3 col-xl-4'></div>
-            <BlockContent
-              className='col-12 col-lg-6 col-xl-4 body'
+        <div className='d-flex justify-content-center'>
+          <div className='d-flex flex-column flex-md-row align-items-center'>
+            <BlockContent className='body px-3 px-md-5'
               blocks={data._rawBody}></BlockContent>
-          <div className='d-flex col-lg-3 col-xl-4 justify-content-center justify-content-lg-start'>
             <img
               className='profile'
               src={data.image.asset.url}
