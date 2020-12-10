@@ -33,7 +33,10 @@ const Contact = () => {
         allSanityContact {
           edges {
             node {
-              title
+              title {
+                regular
+                cursive
+              }
               methods {
                 id
                 label
@@ -92,12 +95,12 @@ const Contact = () => {
   }
 
   return (
-    <div className='contact'>
+    <div id="contact" className='contact'>
       <div className='main'>
         <div className='title-card'>
           <h3 className='mixed-font-title'>
-            <span>{data.title.substr(0, data.title.lastIndexOf(' '))}</span>
-            <span className='cursive'>{data.title.substr(data.title.lastIndexOf(' '))}</span>
+            <span>{data.title.regular}</span>
+            <span className='cursive'>{data.title.cursive}</span>
           </h3>
         </div>
         <div className='methods'>

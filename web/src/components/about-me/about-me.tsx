@@ -5,30 +5,33 @@ import './about-me.scss';
 
 const AboutMe = () => {
   const data = useStaticQuery(graphql`
-    query AboutMeQuery {
-      allSanityAboutMe {
-        edges {
-          node {
-            _rawBody
-            title
-            image {
-              asset {
-                url
-              }
+  query AboutMeQuery {
+    allSanityAboutMe {
+      edges {
+        node {
+          _rawBody
+          title {
+            regular
+            cursive
+          }
+          image {
+            asset {
+              url
             }
           }
         }
       }
     }
+  }
   `).allSanityAboutMe.edges[0].node;
 
   return (
-    <div className='about-me'>
+    <div id="about" className='about-me'>
       <div className='main'>
         <h3 className='mixed-font-title'>
-          <div>{data.title.substr(0, data.title.lastIndexOf(' '))}</div>
+          <div>{data.title.regular}</div>
           <div className='cursive'>
-            {data.title.substr(data.title.lastIndexOf(' '))}
+            {data.title.cursive}
           </div>
           <div>.</div>
         </h3>

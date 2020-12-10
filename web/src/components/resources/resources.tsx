@@ -35,7 +35,6 @@ const Resources = () => {
       allSanityResources {
         edges {
           node {
-            visible
             title
             categories {
               name
@@ -124,9 +123,8 @@ const Resources = () => {
       }
     }
   }
-  if (data.visible) {
     return (
-      <div className='resources'>
+      <div id="resources" className='resources'>
         <div
           className='bg'
           style={{ backgroundImage: `url('${data.image.asset.url}')` }}></div>
@@ -162,9 +160,6 @@ const Resources = () => {
         </div>
       </div>
     );
-  } else {
-    return null;
-  }
 };
 
 export default Resources;

@@ -1,4 +1,4 @@
-@import "../../styles/variables";
+@import '../../styles/variables';
 $nav-bar-padding: 8px;
 .header {
     header {
@@ -16,21 +16,17 @@ $nav-bar-padding: 8px;
             width: 100%;
             display: flex;
             justify-content: center;
-            padding: $nav-bar-padding 0;
+            padding: 0 0;
             .back-to-top {
                 position: absolute;
                 right: 16px;
                 padding: 0;
-                &::before {
-                    content: "";
-                    border: solid $accent-2-extra-light;
-                    border-width: 3px 3px 0 0;
+                .chevron {
                     display: inline-block;
-                    padding: 3px;
-                    margin-right: 7px;
-                    transform: rotate(-45deg);
-                    -webkit-transform: rotate(-45deg);
-                    background: none;
+                    transform: rotate(180deg);
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 8px;
                 }
             }
             .nav-menu {
@@ -42,12 +38,26 @@ $nav-bar-padding: 8px;
             }
             .btn {
                 font-weight: 300;
+                border-radius: 0px;
                 display: block;
                 color: $accent-2-extra-light;
                 white-space: nowrap;
-                padding: 0 5px;
-                &:hover {
+                padding: $nav-bar-padding 8px;
+                background: linear-gradient( to bottom, $accent-2-extra-light 0%, $accent-2-extra-light 100%);
+                background-position: 0 100%;
+                background-repeat: repeat-x;
+                background-size: 4px 0px;
+                text-decoration: none;
+                transition: color 500ms 100ms, background-size 500ms, opacity 150ms;
+                border: none;
+                &:hover,
+                &:focus {
+                    color: $accent-1;
                     text-decoration: underline;
+                    background-size: 4px 50px;
+                    svg * {
+                        stroke: $accent-1;
+                    }
                 }
             }
         }

@@ -23,7 +23,7 @@ const Work = () => {
   `).allSanityWork.edges[0].node;
 
   return (
-    <div className='work'>
+    <div id="work" className='work'>
       <div className='main'>
         <div className='left'></div>
         <div className='caption'>
