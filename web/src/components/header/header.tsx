@@ -60,7 +60,7 @@ const Header = ({ sections }) => {
       <header>
         <div className='nav-wrapper'>
           <div className='nav-menu'>
-            {sections.map((section, i) => (
+            {sections?.map((section, i) => (
               <button className='btn' key={i} onClick={()=>scrollToSection(section.id)}>
                 {section.link}
               </button>

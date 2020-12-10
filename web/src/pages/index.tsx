@@ -61,10 +61,10 @@ const IndexPage = () => {
 
 
 
-  return (<Layout sections = {sections.filter(section => section.visible)}>
+  return (<Layout sections = {sections?.filter(section => section.visible)}>
     <SEO title='Home' />
     <CarouselContainer />
-    {sections.map((section, i) => {
+    {sections?.map((section, i) => {
       if(section.visible){
         return section.element;
       }
