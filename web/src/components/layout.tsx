@@ -3,6 +3,7 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header/header"
+import Footer from "./footer/footer"
 
 const Layout = ({sections, children }) => {
   const data = useStaticQuery(graphql`
@@ -18,6 +19,7 @@ const Layout = ({sections, children }) => {
     <>
       <Header sections={sections}/>
         <main>{children}</main>
+        <Footer></Footer>
     </>
   )
 }

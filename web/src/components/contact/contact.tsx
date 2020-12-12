@@ -59,18 +59,20 @@ const Contact = () => {
 
   function createMethod(method: Method) {
     return (
-      <div
+      <a
       key={method.id}
         onMouseEnter={() => playAnimation(method.id)}
-        onFocus={() => playAnimation(method.id)}>
+        onFocus={() => playAnimation(method.id)}
+        href={method.url} target="_blank" rel="noreferrer">
         <div>
           <div className='icon' ref={animations[method.id]?.container}></div>
           {method.label.map((label,i) => <strong key={i}>{label}</strong>)}
         </div>
         <div className='title'>{method.title}</div>
-      </div>
+      </a>
     );
   }
+
 
   useEffect(() => {
     Object.values(animations).forEach(animation => {

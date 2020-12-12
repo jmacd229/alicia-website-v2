@@ -1,0 +1,48 @@
+@mixin wipebtn() {
+    font-weight: 300;
+    border-radius: 0px;
+    display: block;
+    color: $accent-2-extra-light;
+    white-space: nowrap;
+    background: linear-gradient( to bottom, $accent-2-extra-light 0%, $accent-2-extra-light 100%);
+    background-position: 0 100%;
+    background-repeat: repeat-x;
+    background-size: 4px 0px;
+    text-decoration: none;
+    transition: color 500ms 100ms, background-size 500ms, opacity 150ms;
+    border: none;
+    &:hover,
+    &:focus {
+        color: $accent-1-dark;
+        background-size: 4px 50px;
+        svg * {
+            stroke: $accent-1-dark;
+        }
+    }
+}
+
+@mixin wipebtnLeft() {
+    @include wipebtn;
+    background-position: 0 100%;
+    background-repeat: repeat-y;
+    background-size: 0px 4px;
+    &:hover,
+    &:focus {
+        background-size: 100% 4px;
+    }
+}
+
+@mixin wipebtnRight() {
+    @include wipebtn;
+    background-position: 100% 0;
+    background-repeat: repeat-y;
+    background-size: 0px 4px;
+    &:hover,
+    &:focus {
+        background-size: 100% 4px;
+    }
+}
+
+@mixin shadow {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}

@@ -15,6 +15,7 @@ const AboutMe = () => {
             cursive
           }
           image {
+            alt
             asset {
               url
             }

@@ -1,4 +1,5 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
 $picture-offset: 70px;
 .work {
     .main {
@@ -14,6 +15,7 @@ $picture-offset: 70px;
             align-self: flex-end;
         }
         .caption {
+            @include shadow;
             flex-grow: 1;
             z-index: 1;
             position: absolute;
@@ -25,7 +27,7 @@ $picture-offset: 70px;
             h2 {
                 font-family: $cursive-family;
                 color: $secondary-color;
-                font-size: 64px;
+                font-size: 72px;
                 margin-top: -60px;
                 margin-left: -36px;
                 transform: rotate(-6deg);
@@ -34,9 +36,26 @@ $picture-offset: 70px;
                 background-size: 50% 6px;
                 background-position: 0 100%;
             }
-            p {
+            .caption-body {
                 padding: 64px;
                 color: $secondary-color-light;
+                a.booking {
+                    @include shadow;
+                    white-space: normal;
+                    background-color: $accent-1-dark !important;
+                    padding: 8px 16px;
+                    font-size: 18px;
+                    >div {
+                        display: inline-block;
+                        width: 50px;
+                    }
+                    &:first-of-type {
+                        @include wipebtnLeft;
+                    }
+                    &:not(:first-of-type) {
+                        @include wipebtnRight;
+                    }
+                }
             }
         }
         .img-container {
@@ -70,6 +89,9 @@ $picture-offset: 70px;
                 height: 50px;
             }
             .caption {
+                .caption-body {
+                    padding: 8px;
+                }
                 margin-bottom: 0;
                 position: relative;
                 left: auto;

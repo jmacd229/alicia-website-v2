@@ -60,14 +60,17 @@ const Header = ({ sections }) => {
       <header>
         <div className='nav-wrapper'>
           <div className='nav-menu'>
+            <div>
             {sections?.map((section, i) => (
               <button className='btn' key={i} onClick={()=>scrollToSection(section.id)}>
                 {section.link}
               </button>
             ))}
+            </div>
           </div>
           <Fade in={scrollTop}>
             <button
+            disabled={!scrollTop}
               className='btn back-to-top'
               onMouseEnter={playAnimation}
               onFocus={playAnimation}
