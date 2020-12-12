@@ -47,6 +47,7 @@ module.exports = {
                 dataset: 'production',
             },
         },
-        `gatsby-plugin-sass`
+        `gatsby-plugin-sass`,
+        { resolve: `gatsby-plugin-mailgo` }
     ],
 }
