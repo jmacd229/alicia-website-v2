@@ -46,12 +46,12 @@ const Header = ({ sections }) => {
   }
 
   function scrollToTop() {
-    window.scrollTo({top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   function scrollToSection(id: string) {
     const el = document.getElementById(id);
-    if(el){
-      el.scrollIntoView({behavior: 'smooth' });
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
@@ -62,7 +62,10 @@ const Header = ({ sections }) => {
           <div className='nav-menu'>
             <div>
             {sections?.map((section, i) => (
-              <button className='btn' key={i} onClick={()=>scrollToSection(section.id)}>
+                <button
+                  className='btn'
+                  key={i}
+                  onClick={() => scrollToSection(section.id)}>
                 {section.link}
               </button>
             ))}
@@ -71,6 +74,7 @@ const Header = ({ sections }) => {
           <Fade in={scrollTop}>
             <button
             disabled={!scrollTop}
+              aria-hidden={!scrollTop}
               className='btn back-to-top'
               onMouseEnter={playAnimation}
               onFocus={playAnimation}
