@@ -3,7 +3,7 @@
     "private": true,
     "description": "A personal website for Alicia MacDougall",
     "version": "1.0.0",
-    "releaseDate": "11-22-2020",
+    "releaseDate": "12-12-2020",
     "author": "Jesse MacDougall",
     "dependencies": {
         "@popperjs/core": "^2.5.4",
@@ -34,7 +34,7 @@
         "prettier": "2.1.2"
     },
     "scripts": {
-        "build": "json -I -f package.json -e \"this.releaseDate='$(date '+%m-%d-%Y')'\" && gatsby build",
+        "build": "gatsby build",
         "develop": "gatsby develop",
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
         "start": "npm run develop",
