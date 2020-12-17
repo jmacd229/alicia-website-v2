@@ -2,6 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import './about-me.scss';
+import Img from 'gatsby-image';
 
 const AboutMe = () => {
   const data = useStaticQuery(graphql`
@@ -17,7 +18,9 @@ const AboutMe = () => {
           image {
             alt
             asset {
-              url
+              fluid(maxWidth: 350) {
+                ...GatsbySanityImageFluid
+              }
             }
           }
         }
@@ -40,9 +43,9 @@ const AboutMe = () => {
           <div className='d-flex flex-column flex-md-row align-items-center'>
             <BlockContent className='body px-3 px-md-5'
               blocks={data._rawBody}></BlockContent>
-            <img
+            <Img
               className='profile'
-              src={data.image.asset.url}
+              fluid={data.image.asset.fluid}
               alt={data.image.alt}
             />
           </div>

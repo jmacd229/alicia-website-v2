@@ -4,6 +4,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import virtual from '../../animations/virtual.json';
 import book from '../../animations/book.json';
 import lottie, { AnimationItem } from 'lottie-web';
+import Img from 'gatsby-image';
 import './work.scss';
 
 const Work = () => {
@@ -26,7 +27,9 @@ const Work = () => {
             }
             image {
               asset {
-                url
+                fluid(maxHeight: 500) {
+                  ...GatsbySanityImageFluid
+                }
               }
             }
           }
@@ -80,7 +83,7 @@ const Work = () => {
           <h2>{data.title}</h2>
           <div className='caption-body'>
             <BlockContent blocks={data._rawBody}></BlockContent>
-            <div className='d-flex flex-column align-items-center'>
+            <div className='d-flex flex-column align-items-center mt-5'>
               {data.bookVisible ? (
                 <a
                   onMouseEnter={playBookAnimation}
@@ -117,7 +120,7 @@ const Work = () => {
         </div>
         <div className='img-container'>
           <div className='img-bg'></div>
-          <img src={data.image.asset.url} alt='' role='presentation' />
+          <Img fluid={data.image.asset.fluid} alt='' />
         </div>
       </div>
     </div>

@@ -3,26 +3,29 @@ import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import './carousel.scss';
 import BlockContent from '@sanity/block-content-to-react';
+import Img from 'gatsby-image'
 
 const CarouselContainer = () => {
   const data = useStaticQuery(graphql`
-    query MyQuery {
-      allSanityCarousel(limit: 1) {
-        edges {
-          node {
-            subtitle
-            title
-            _rawBody
-            slides {
-              alt
-              asset {
-                url
-              }
+  query MyQuery {
+    allSanityCarousel(limit: 1) {
+      edges {
+        node {
+          subtitle
+          title
+          _rawBody
+          slides {
+            alt
+            asset {
+              fluid(maxWidth: 990) {
+          ...GatsbySanityImageFluid
+        }
             }
           }
         }
       }
     }
+  }
   `).allSanityCarousel.edges[0].node;
 
   return (
@@ -32,8 +35,8 @@ const CarouselContainer = () => {
           <Carousel controls={false} indicators={false}>
             {data.slides.map((slide, i) => (
               <Carousel.Item key={i}>
-                <img
-                  src={slide.asset.url}
+                <Img
+                  fluid={slide.asset.fluid}
                   alt={slide.alt}
                   style={{ display: 'block', width: '100%' }}
                 />

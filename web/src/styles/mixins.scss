@@ -9,8 +9,11 @@
     background-repeat: repeat-x;
     background-size: 4px 0px;
     text-decoration: none;
-    transition: color 500ms 100ms, background-size 500ms, opacity 150ms;
+    transition: color 500ms 100ms, background-size ease-in-out 500ms, opacity 150ms;
     border: none;
+    svg * {
+        transition: stroke 500ms 100ms;
+    }
     &:hover,
     &:focus {
         color: $accent-1-dark;
@@ -34,7 +37,7 @@
 
 @mixin wipebtnRight() {
     @include wipebtn;
-    background-position: 100% 0;
+    background-position: 110% 0;
     background-repeat: repeat-y;
     background-size: 0px 4px;
     &:hover,
