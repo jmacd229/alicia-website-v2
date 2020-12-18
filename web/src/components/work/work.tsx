@@ -78,8 +78,8 @@ const Work = () => {
   return (
     <div id='work' className='work'>
       <div className='main'>
-        <div className='left'></div>
-        <div className='caption'>
+        <div className='left' data-sal="slide-right" data-sal-duration="500"></div>
+        <div className='caption' data-sal="zoom-out" data-sal-duration="1000" data-sal-delay="600">
           <h2>{data.title}</h2>
           <div className='caption-body'>
             <BlockContent blocks={data._rawBody}></BlockContent>
@@ -118,7 +118,7 @@ const Work = () => {
           </div>
           <div className='line'></div>
         </div>
-        <div className='img-container'>
+        <div className='img-container' data-sal="slide-left" data-sal-duration="500" data-sal-delay="300">
           <div className='img-bg'></div>
           <Img fluid={data.image.asset.fluid} alt='' />
         </div>

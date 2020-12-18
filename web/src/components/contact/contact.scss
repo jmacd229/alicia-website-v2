@@ -29,7 +29,7 @@
             align-items: center;
             justify-content: space-evenly;
             background-color: $accent-2-dark;
-            >a {
+            a {
                 @include shadow;
                 background-color: $accent-2;
                 transition: background-color 500ms linear;

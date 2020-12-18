@@ -48,6 +48,9 @@ module.exports = {
             },
         },
         `gatsby-plugin-sass`,
-        { resolve: `gatsby-plugin-mailgo` }
+        { resolve: `gatsby-plugin-mailgo` },
+        {
+            resolve: `gatsby-plugin-scroll-reveal`
+        }
     ],
 }

@@ -31,7 +31,7 @@ const CarouselContainer = () => {
   return (
     <div className='carousel'>
       <div className='main row no-gutters'>
-        <div className='col-12 col-lg-7'>
+        <div className='col-12 col-lg-7' data-sal="slide-right" data-sal-duration="1000" data-sal-delay="1000">
           <Carousel controls={false} indicators={false}>
             {data.slides.map((slide, i) => (
               <Carousel.Item key={i}>
@@ -45,9 +45,11 @@ const CarouselContainer = () => {
           </Carousel>
         </div>
         <div className='col-12 col-lg-5 flex-shrink-1'>
-          <h2 className="mb-0 d-flex justify-content-center">{data.title}</h2>
-          <h3>{data.subtitle}</h3>
+          <h2 className="mb-0 d-flex justify-content-center" data-sal="fade" data-sal-duration="2000">{data.title}</h2>
+          <h3 data-sal="fade" data-sal-duration="2000" data-sal-delay="500">{data.subtitle}</h3>
+          <div data-sal="fade" data-sal-duration="2000" data-sal-delay="1000">
           <BlockContent blocks={data._rawBody}></BlockContent>
+          </div>
         </div>
       </div>
       <div className='separator'></div>

@@ -20,34 +20,34 @@ class Animation {
 }
 
 interface Method {
-    id: string;
-    label: string[];
-    title: string;
-    url: string;
-    visible: boolean;
+  id: string;
+  label: string[];
+  title: string;
+  url: string;
+  visible: boolean;
 }
 
 const Contact = () => {
-    const data = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query ContactQuery {
-        allSanityContact {
-          edges {
-            node {
-              title {
-                regular
-                cursive
-              }
-              methods {
-                id
-                label
-                title
-                url
-                visible
-              }
+      allSanityContact {
+        edges {
+          node {
+            title {
+              regular
+              cursive
+            }
+            methods {
+              id
+              label
+              title
+              url
+              visible
             }
           }
         }
       }
+    }
   `).allSanityContact.edges[0].node;
   const animations = {
     email: new Animation(email),
@@ -57,22 +57,30 @@ const Contact = () => {
     instagram: new Animation(instagram),
   };
 
-  function createMethod(method: Method) {
+  function createMethod(method: Method, index: number) {
     return (
-      <a
-      key={method.id}
-        onMouseEnter={() => playAnimation(method.id)}
-        onFocus={() => playAnimation(method.id)}
-        href={method.url} target="_blank" rel="noreferrer">
-        <div>
-          <div className='icon' ref={animations[method.id]?.container}></div>
-          {method.label.map((label,i) => <strong key={i}>{label}</strong>)}
-        </div>
-        <div className='title'>{method.title}</div>
-      </a>
+      <div
+        key={method.id}
+        data-sal='zoom-in'
+        data-sal-duration='1000'
+        data-sal-delay={(index + 1) * 200}>
+        <a
+          onMouseEnter={() => playAnimation(method.id)}
+          onFocus={() => playAnimation(method.id)}
+          href={method.url}
+          target='_blank'
+          rel='noreferrer'>
+          <div>
+            <div className='icon' ref={animations[method.id]?.container}></div>
+            {method.label.map((label, i) => (
+              <strong key={i}>{label}</strong>
+            ))}
+          </div>
+          <div className='title'>{method.title}</div>
+        </a>
+      </div>
     );
   }
-
 
   useEffect(() => {
     Object.values(animations).forEach(animation => {
@@ -97,7 +105,7 @@ const Contact = () => {
   }
 
   return (
-    <div id="contact" className='contact'>
+    <div id='contact' className='contact'>
       <div className='main'>
         <div className='title-card'>
           <h3 className='mixed-font-title'>
@@ -106,7 +114,9 @@ const Contact = () => {
           </h3>
         </div>
         <div className='methods'>
-            {data.methods.map(method => method.visible ? createMethod(method) : null)}
+          {data.methods.map((method, index) =>
+            method.visible ? createMethod(method, index) : null
+          )}
         </div>
       </div>
     </div>
