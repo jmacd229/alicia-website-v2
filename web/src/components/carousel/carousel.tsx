@@ -6,6 +6,7 @@ import Img from 'gatsby-image';
 
 const CarouselContainer = () => {
   const [imgIndex, setImgIndex] = useState(0);
+  const [yOffset, setYOffset] = useState(0);
   const data = useStaticQuery(graphql`
     query MyQuery {
       allSanityCarousel(limit: 1) {
@@ -32,9 +33,19 @@ const CarouselContainer = () => {
     setImgIndex(Math.floor(Math.random() * 2));
   }, []);
 
+  useEffect(() => {
+    const onScroll = e => {
+      console.log(e.target.documentElement.scrollTop);
+      setYOffset(e.target.documentElement.scrollTop);
+    }
+    window.addEventListener('scroll', onScroll);
+
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [yOffset]);
+
   return (
     <div className='carousel'>
-      <div className='img-container'>
+      <div className='img-container' style={{top: `-${yOffset/3}px` }}>
         <Img
           fluid={data.slides[imgIndex].asset.fluid}
           alt={data.slides[imgIndex].alt}

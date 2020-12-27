@@ -6,6 +6,7 @@ import book from '../../animations/book.json';
 import lottie, { AnimationItem } from 'lottie-web';
 import Img from 'gatsby-image';
 import './work.scss';
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
 const Work = () => {
   const data = useStaticQuery(graphql`
@@ -85,7 +86,7 @@ const Work = () => {
             <BlockContent blocks={data._rawBody}></BlockContent>
             <div className='d-flex flex-column align-items-center mt-2'>
               {data.bookVisible ? (
-                <a
+                <OutboundLink
                   onMouseEnter={playBookAnimation}
                   onMouseLeave={playBookAnimation}
                   onFocus={playBookAnimation}
@@ -96,10 +97,10 @@ const Work = () => {
                   rel="noreferrer">
                   <div className='mr-2' ref={animations.book.container}></div>
                   {data.bookLink.text}
-                </a>
+                </OutboundLink>
               ) : null}
               {data.virtualVisible ? (
-                <a
+                <OutboundLink
                   onMouseEnter={playVirtualAnimation}
                   onMouseLeave={playVirtualAnimation}
                   onFocus={playVirtualAnimation}
@@ -112,7 +113,7 @@ const Work = () => {
                   <div
                     className='ml-2'
                     ref={animations.virtual.container}></div>
-                </a>
+                </OutboundLink>
               ) : null}
             </div>
           </div>
