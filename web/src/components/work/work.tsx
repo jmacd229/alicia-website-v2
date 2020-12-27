@@ -81,7 +81,7 @@ const Work = () => {
       <div className='main'>
         <div className='left' data-sal="slide-right" data-sal-duration="500"></div>
         <div className='caption' data-sal="zoom-out" data-sal-duration="1000" data-sal-delay="200">
-          <h2>{data.title}</h2>
+          <h3>{data.title}</h3>
           <div className='caption-body'>
             <BlockContent blocks={data._rawBody}></BlockContent>
             <div className='d-flex flex-column align-items-center mt-2'>

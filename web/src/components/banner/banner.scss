@@ -1,5 +1,5 @@
 @import '../../styles/variables';
-.carousel {
+.banner {
     height: 700px;
     background-color: $secondary-color-dark;
     position: relative;
@@ -63,13 +63,15 @@
                     -webkit-columns: 2;
                     -moz-columns: 2;
                     li {
+                        position: relative;
                         margin: 24px 0;
-                        &:before {
+                        &:after {
                             content: '';
                             margin-left: -16px;
                             opacity: 0.3;
                             z-index: -1;
                             position: absolute;
+                            left: 0;
                             width: 0;
                             height: 0;
                             border-top: 8px solid transparent;
@@ -84,7 +86,7 @@
 }
 
 @media (max-width: $mobile-size) {
-    .carousel {
+    .banner {
         .front {
             >div {
                 >div {

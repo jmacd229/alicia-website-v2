@@ -118,16 +118,16 @@ const Contact = () => {
   return (
     <div id='contact' className='contact'>
       <div className='main'>
-        <div className='methods'>
-          {data.methods
-            .filter(method => method.visible)
-            .map((method) => createMethod(method))}
-        </div>
-        <div className='title-card'>
+      <div className='title-card order-2'>
           <h3 className='mixed-font-title'>
             <span>{data.title.regular}</span>
             <span className='cursive'>{data.title.cursive}</span>
           </h3>
+        </div>
+        <div className='methods order-1'>
+          {data.methods
+            .filter(method => method.visible)
+            .map((method) => createMethod(method))}
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import '../styles/global.scss';
-import CarouselContainer from '../components/carousel/carousel';
+import BannerContainer from '../components/banner/banner';
 import AboutMe from '../components/about-me/about-me';
 import Work from '../components/work/work';
 import Resources from '../components/resources/resources';
@@ -53,7 +53,7 @@ const IndexPage = () => {
   `);
 
   const sections = [
-    {visible: data.allSanityCarousel.edges[0].node.visible, element: <AboutMe key={0}/>, link: "About Me", id: "about"},
+    {visible: data.allSanityAboutMe.edges[0].node.visible, element: <AboutMe key={0}/>, link: "About Me", id: "about"},
     {visible: data.allSanityWork.edges[0].node.visible, element: <Work key={1}/>, link: "Work with Me", id: "work"},
     {visible: data.allSanityResources.edges[0].node.visible, element: <Resources key={2}/>, link: "Free Resources", id: "resources"},
     {visible: data.allSanityContact.edges[0].node.visible, element: <Contact key={3}/>, link: "Contact Me", id: "contact"}
@@ -63,7 +63,7 @@ const IndexPage = () => {
 
   return (<Layout sections = {sections?.filter(section => section.visible)}>
     <SEO title='Home' />
-    <CarouselContainer />
+    <BannerContainer />
     {sections?.map((section, i) => {
       if(section.visible){
         return section.element;

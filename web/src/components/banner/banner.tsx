@@ -1,10 +1,10 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import React, { useEffect, useState } from 'react';
-import './carousel.scss';
+import './banner.scss';
 import BlockContent from '@sanity/block-content-to-react';
 import Img from 'gatsby-image';
 
-const CarouselContainer = () => {
+const BannerContainer = () => {
   const [imgIndex, setImgIndex] = useState(0);
   const [yOffset, setYOffset] = useState(0);
   const data = useStaticQuery(graphql`
@@ -34,17 +34,14 @@ const CarouselContainer = () => {
   }, []);
 
   useEffect(() => {
-    const onScroll = e => {
-      console.log(e.target.documentElement.scrollTop);
-      setYOffset(e.target.documentElement.scrollTop);
-    }
+    const onScroll = e =>setYOffset(e.target.documentElement.scrollTop);
     window.addEventListener('scroll', onScroll);
 
     return () => window.removeEventListener('scroll', onScroll);
   }, [yOffset]);
 
   return (
-    <div className='carousel'>
+    <div className='banner'>
       <div className='img-container' style={{top: `-${yOffset/3}px` }}>
         <Img
           fluid={data.slides[imgIndex].asset.fluid}
@@ -72,4 +69,4 @@ const CarouselContainer = () => {
   );
 };
 
-export default CarouselContainer;
+export default BannerContainer;

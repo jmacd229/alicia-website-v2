@@ -26,7 +26,7 @@ $picture-offset: 70px;
             width: 800px;
             height: 400px;
             margin-bottom: $picture-offset;
-            h2 {
+            h3 {
                 font-family: $cursive-family;
                 color: $secondary-color;
                 font-size: 80px;
@@ -108,7 +108,7 @@ $picture-offset: 70px;
                 left: auto;
                 width: 100%;
                 height: auto;
-                h2 {
+                h3 {
                     margin-left: 0px;
                     margin-top: 0;
                     transform: none;
@@ -131,7 +131,7 @@ $picture-offset: 70px;
 
 @media (max-width: $mobile-size) {
     .work {
-        .main .caption h2 {
+        .main .caption h3 {
             font-size: 48px;
         }
         .main .caption .caption-body {
