@@ -1,9 +1,9 @@
 @mixin wipebtn() {
     border-radius: 0px;
     display: block;
-    color: $accent-2-extra-light;
+    color: $color-white;
     white-space: nowrap;
-    background: linear-gradient( to bottom, $accent-2-extra-light 0%, $accent-2-extra-light 100%);
+    background: linear-gradient( to bottom, $color-white 0%, $color-white 100%);
     background-position: 0 100%;
     background-repeat: repeat-x;
     background-size: 4px 0px;
@@ -51,7 +51,8 @@
 }
 
 @mixin wiggle {
-    &:hover {
+    &:hover,
+    &:focus {
         animation: wiggle 600ms ease-in-out;
     }
 }

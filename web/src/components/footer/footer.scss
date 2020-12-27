@@ -8,7 +8,7 @@
     font-size: 12px;
     line-height: normal;
     background-color: $main-color;
-    color: $accent-2-extra-light;
+    color: $color-white;
     position: relative;
     align-items: center;
     justify-content: space-between;
@@ -42,7 +42,7 @@
         height: 72px;
     }
     a {
-        color: $accent-2-extra-light;
+        color: $color-white;
         &:hover,
         &:focus {
             color: $accent-1;

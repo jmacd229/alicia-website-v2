@@ -37,7 +37,7 @@
         "prettier": "2.1.2"
     },
     "scripts": {
-        "build": "gatsby build",
+        "build": "sed -i '' 's|\"releaseDate\": \".*\"|\"releaseDate\": \"'$(date +%m-%d-%Y)'\"|g' package.json && gatsby build",
         "develop": "gatsby develop",
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
         "start": "npm run develop",
