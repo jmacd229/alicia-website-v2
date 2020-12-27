@@ -1,58 +1,62 @@
 import { graphql, useStaticQuery } from 'gatsby';
-import React from 'react';
-import { Carousel } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
 import './carousel.scss';
 import BlockContent from '@sanity/block-content-to-react';
-import Img from 'gatsby-image'
+import Img from 'gatsby-image';
 
 const CarouselContainer = () => {
+  const [imgIndex, setImgIndex] = useState(0);
   const data = useStaticQuery(graphql`
-  query MyQuery {
-    allSanityCarousel(limit: 1) {
-      edges {
-        node {
-          subtitle
-          title
-          _rawBody
-          slides {
-            alt
-            asset {
-              fluid(maxWidth: 990) {
-          ...GatsbySanityImageFluid
-        }
+    query MyQuery {
+      allSanityCarousel(limit: 1) {
+        edges {
+          node {
+            subtitle
+            title
+            _rawBody
+            slides {
+              alt
+              asset {
+                fluid(maxHeight: 700) {
+                  ...GatsbySanityImageFluid
+                }
+              }
             }
           }
         }
       }
     }
-  }
   `).allSanityCarousel.edges[0].node;
+
+  useEffect(() => {
+    setImgIndex(Math.floor(Math.random() * 2));
+  }, []);
 
   return (
     <div className='carousel'>
-      <div className='main row no-gutters'>
-        <div className='col-12 col-lg-7' data-sal="slide-right" data-sal-duration="1000" data-sal-delay="1000">
-          <Carousel controls={false} indicators={false}>
-            {data.slides.map((slide, i) => (
-              <Carousel.Item key={i}>
-                <Img
-                  fluid={slide.asset.fluid}
-                  alt={slide.alt}
-                  style={{ display: 'block', width: '100%' }}
-                />
-              </Carousel.Item>
-            ))}
-          </Carousel>
-        </div>
-        <div className='col-12 col-lg-5 flex-shrink-1'>
-          <h2 className="mb-0 d-flex justify-content-center" data-sal="fade" data-sal-duration="2000">{data.title}</h2>
-          <h3 data-sal="fade" data-sal-duration="2000" data-sal-delay="500">{data.subtitle}</h3>
-          <div data-sal="fade" data-sal-duration="2000" data-sal-delay="1000">
-          <BlockContent blocks={data._rawBody}></BlockContent>
+      <div className='img-container'>
+        <Img
+          fluid={data.slides[imgIndex].asset.fluid}
+          alt={data.slides[imgIndex].alt}
+          style={{ display: 'block', width: '100%' }}
+        />
+      </div>
+      <div className='front'>
+        <div>
+          <div data-sal='fade' data-sal-duration='1000'>
+          <h2>
+            {data.title}
+          </h2>
+          <h3
+            className='cursive'>
+            {data.subtitle}
+          </h3>
+          </div>
+          <div className="body" data-sal='fade' data-sal-duration='1000'>
+            <BlockContent blocks={data._rawBody}></BlockContent>
           </div>
         </div>
       </div>
-      <div className='separator'></div>
     </div>
   );
 };

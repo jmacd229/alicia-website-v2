@@ -79,11 +79,11 @@ const Work = () => {
     <div id='work' className='work'>
       <div className='main'>
         <div className='left' data-sal="slide-right" data-sal-duration="500"></div>
-        <div className='caption' data-sal="zoom-out" data-sal-duration="1000" data-sal-delay="600">
+        <div className='caption' data-sal="zoom-out" data-sal-duration="1000" data-sal-delay="200">
           <h2>{data.title}</h2>
           <div className='caption-body'>
             <BlockContent blocks={data._rawBody}></BlockContent>
-            <div className='d-flex flex-column align-items-center mt-5'>
+            <div className='d-flex flex-column align-items-center mt-2'>
               {data.bookVisible ? (
                 <a
                   onMouseEnter={playBookAnimation}
@@ -118,7 +118,7 @@ const Work = () => {
           </div>
           <div className='line'></div>
         </div>
-        <div className='img-container' data-sal="slide-left" data-sal-duration="500" data-sal-delay="300">
+        <div className='img-container' data-sal="slide-left" data-sal-duration="500" data-sal-delay="100">
           <div className='img-bg'></div>
           <Img fluid={data.image.asset.fluid} alt='' />
         </div>

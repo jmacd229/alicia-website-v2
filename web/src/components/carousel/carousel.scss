@@ -1,46 +1,100 @@
 @import '../../styles/variables';
 .carousel {
-    .main {
-        display: flex;
-        background-color: $accent-2-extra-light;
-        >div:first-child {
-            max-height: 500px;
-        }
-        >div:nth-child(2) {
-            padding: 32px;
-            h2 {
-                font-size: 1.8vw;
-                white-space: nowrap;
-            }
-            h3 {
-                font-size: 32px;
-                color: $accent-1-dark;
-                font-family: $cursive-family;
-                margin-left: 54px;
-            }
-        }
-    }
-    .carousel.slide {
+    height: 700px;
+    background-color: $secondary-color-dark;
+    position: relative;
+    .img-container {
+        z-index: 0;
+        opacity: 0.2;
         height: 100%;
-        .carousel-inner {
-            background-color: $main-color;
+        >div {
             height: 100%;
-            display: flex;
-            align-items: center;
-            >slide {
-                height: 100%;
-            }
         }
     }
-    .separator {
+    .front {
+        display: flex;
+        height: 100%;
         width: 100%;
-        height: 16px;
-        background-color: $main-color;
+        top: 0;
+        z-index: 1;
+        position: absolute;
+        color: $accent-2-light;
+        font-weight: 200;
+        padding: 0 16px;
+        >div {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            >div {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                h2 {
+                    text-align: center;
+                    color: $accent-2-light;
+                    font-weight: 200;
+                    font-size: clamp(32px, 7vw, 88px);
+                    letter-spacing: -3px;
+                    word-spacing: 16px;
+                    margin-bottom: 64px;
+                }
+                h3 {
+                    color: $accent-1-light;
+                    font-size: clamp(28px, 5vw, 48px);
+                    bottom: 2vw;
+                    opacity: 0.6;
+                    position: absolute;
+                }
+            }
+            .body {
+                max-width: 1000px;
+                font-size: 20px;
+                ul {
+                    font-size: 16px;
+                    list-style-type: none;
+                    margin-top: 48px;
+                    columns: 2;
+                    -webkit-columns: 2;
+                    -moz-columns: 2;
+                    li {
+                        margin: 24px 0;
+                        &:before {
+                            content: '';
+                            margin-left: -16px;
+                            opacity: 0.3;
+                            z-index: -1;
+                            position: absolute;
+                            width: 0;
+                            height: 0;
+                            border-top: 8px solid transparent;
+                            border-bottom: 8px solid transparent;
+                            border-left: 8px solid $accent-1;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
-@media (max-width: $medium-size) {
-    .carousel .main>div:nth-child(2) h2 {
-        font-size: clamp(12px, 4.7vw, 42px);
+@media (max-width: $mobile-size) {
+    .carousel {
+        .front {
+            >div {
+                >div {
+                    h2 {
+                        margin-bottom: 32px;
+                        letter-spacing: -1px;
+                    }
+                }
+                .body {
+                    font-size: 14px;
+                }
+            }
+        }
     }
 }

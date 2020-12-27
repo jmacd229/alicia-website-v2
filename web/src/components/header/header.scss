@@ -1,8 +1,9 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
-$nav-bar-padding: 8px;
 .header {
     header {
+        @include shadow;
+        z-index: 2;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -10,32 +11,24 @@ $nav-bar-padding: 8px;
         background-color: $main-color;
         padding: 0 8px 8px 8px;
         width: 100%;
-        border-bottom: 16px solid $accent-1;
-        &:after {
-            @include shadow;
-            content: "";
-            width: 45%;
-            height: 16px;
-            position: absolute;
-            bottom: -16px;
-            background-color: $accent-1-dark;
-        }
         .nav-wrapper {
             @include shadow;
             position: fixed;
             background-color: $accent-1;
-            z-index: 100;
+            z-index: 3;
             width: 100%;
             display: flex;
             justify-content: center;
             padding: 0 0;
             .back-to-top {
-                @include shadow;
+                height: 100%;
+                display: flex !important;
+                align-items: center;
                 position: absolute;
                 right: 0px;
                 padding: 8px 24px;
                 .chevron {
-                    display: inline-block;
+                    display: inline-flex;
                     transform: rotate(180deg);
                     width: 24px;
                     height: 24px;
@@ -45,60 +38,26 @@ $nav-bar-padding: 8px;
             .nav-menu {
                 width: 70%;
                 max-width: 750px;
-                background-color: $accent-1-dark;
+                background-color: $accent-1;
                 position: relative;
                 >div {
                     display: flex;
                     align-items: center;
                     justify-content: space-evenly;
-                    &:before,
-                    &::after {
-                        content: "";
-                        position: absolute;
-                        display: block;
-                        border-style: solid;
-                        border-color: $accent-1-extra-dark transparent transparent transparent;
-                        bottom: -11px;
-                    }
-                    &:before {
-                        left: 0;
-                        border-width: 11px 0 0 8px;
-                    }
-                    &:after {
-                        right: 0;
-                        border-width: 11px 8px 0 0;
-                    }
-                }
-                @include shadow;
-                &:before,
-                &:after {
-                    content: "";
-                    position: absolute;
-                    display: block;
-                    bottom: -11px;
-                    border: 16px solid $accent-1-dark;
-                    z-index: -1;
-                }
-                &:before {
-                    left: -24px;
-                    border-right-width: 16px;
-                    border-left-color: transparent;
-                }
-                &:after {
-                    right: -24px;
-                    border-left-width: 16px;
-                    border-right-color: transparent;
                 }
             }
             .btn {
                 @include wipebtn;
-                background-color: $accent-1-dark;
+                background-color: $accent-1;
+                font-weight: 400;
+                font-size: 1.5rem;
                 color: white;
-                padding: $nav-bar-padding;
+                text-shadow: -1px -1px 0 $accent-1-extra-dark, 1px -1px 0 $accent-1-extra-dark, -1px 1px 0 $accent-1-extra-dark, 1px 1px 0 $accent-1-extra-dark;
+                padding: 4px 8px;
             }
         }
         h1 {
-            margin-top: 64px;
+            margin: 96px 0 32px;
             height: 200px;
             display: flex;
             align-items: center;
@@ -131,48 +90,40 @@ $nav-bar-padding: 8px;
             }
         }
     }
-    .triangle {
-        margin-top: 18px;
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 6px solid $accent-1-dark;
-        transform: scale(7);
-        position: absolute;
-        z-index: 50;
-        transition: border-top-color linear 100ms;
-        &.light {
-            top: 277px;
-            z-index: 51;
-            border-top: 6px solid $main-color;
-        }
-    }
 }
 
 @media (max-width: $mobile-size) {
-    header {
-        .nav-wrapper {
-            .nav-menu {
-                width: 100%;
-                flex-wrap: wrap;
-                margin: 0 24px;
-                height: auto;
-            }
-            .back-to-top {
-                top: 40px;
-                right: 0px;
-                span {
-                    display: none;
+    .header {
+        header {
+            .nav-wrapper {
+                .nav-menu {
+                    width: 100%;
+                    flex-wrap: wrap;
+                    margin: 0 24px;
+                    height: auto;
+                }
+                .btn {
+                    font-weight: 400;
+                    font-size: 1rem;
+                }
+                .back-to-top {
+                    @include shadow;
+                    top: 32px;
+                    display: flex;
+                    align-items: center;
+                    right: 0px;
+                    .chevron {
+                        margin-right: 0;
+                    }
+                    span {
+                        display: none;
+                    }
                 }
             }
+            h1 {
+                margin: 32px 0 0;
+                min-height: 100px;
+            }
         }
-        h1 {
-            margin-top: 64px;
-            height: 100px;
-        }
-    }
-    .triangle.light {
-        top: 179px;
     }
 }

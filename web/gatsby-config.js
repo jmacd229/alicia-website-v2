@@ -17,9 +17,10 @@ module.exports = {
             resolve: 'gatsby-plugin-google-fonts',
             options: {
                 fonts: [
+                    'source sans pro\:200,300,400,700',
                     'material icons',
                     'dancing script',
-                    'alfa slab one',
+                    'roboto slab\:100,200,400,900',
                 ],
             },
         },
@@ -51,6 +52,12 @@ module.exports = {
         { resolve: `gatsby-plugin-mailgo` },
         {
             resolve: `gatsby-plugin-scroll-reveal`
+        },
+        {
+            resolve: `gatsby-plugin-google-gtag`,
+            options: {
+                trackingIds: ["G-ZZM4BTRZPE", "GTM-N84THGP"],
+            }
         }
     ],
 }

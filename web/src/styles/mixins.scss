@@ -1,5 +1,4 @@
 @mixin wipebtn() {
-    font-weight: 300;
     border-radius: 0px;
     display: block;
     color: $accent-2-extra-light;
@@ -9,13 +8,14 @@
     background-repeat: repeat-x;
     background-size: 4px 0px;
     text-decoration: none;
-    transition: color 500ms 100ms, background-size ease-in-out 500ms, opacity 150ms;
+    transition: color 500ms 100ms, background-size ease-in-out 500ms, opacity 150ms, text-shadow 500ms;
     border: none;
     svg * {
         transition: stroke 500ms 100ms;
     }
     &:hover,
     &:focus {
+        text-shadow: none;
         color: $accent-1-dark;
         background-size: 4px 50px;
         svg * {
@@ -48,4 +48,31 @@
 
 @mixin shadow {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+@mixin wiggle {
+    &:hover {
+        animation: wiggle 600ms ease-in-out;
+    }
+}
+
+@keyframes wiggle {
+    0% {
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: rotate(3deg);
+    }
+    40% {
+        transform: rotate(-3deg);
+    }
+    60% {
+        transform: rotate(3deg);
+    }
+    80% {
+        transform: rotate(-3deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }
