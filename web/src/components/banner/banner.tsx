@@ -5,7 +5,6 @@ import BlockContent from '@sanity/block-content-to-react';
 import Img from 'gatsby-image';
 
 const BannerContainer = () => {
-  const [imgIndex, setImgIndex] = useState(0);
   const [yOffset, setYOffset] = useState(0);
   const data = useStaticQuery(graphql`
     query MyQuery {
@@ -30,10 +29,6 @@ const BannerContainer = () => {
   `).allSanityCarousel.edges[0].node;
 
   useEffect(() => {
-    setImgIndex(Math.floor(Math.random() * 2));
-  }, []);
-
-  useEffect(() => {
     const onScroll = e =>setYOffset(e.target.documentElement.scrollTop);
     window.addEventListener('scroll', onScroll);
 
@@ -42,10 +37,10 @@ const BannerContainer = () => {
 
   return (
     <div className='banner'>
-      <div className='img-container' style={{top: `-${yOffset/3}px` }}>
+      <div className='img-container' style={{top: `-${yOffset/2}px` }}>
         <Img
-          fluid={data.slides[imgIndex].asset.fluid}
-          alt={data.slides[imgIndex].alt}
+          fluid={data.slides[0].asset.fluid}
+          alt={data.slides[0].alt}
           style={{ display: 'block', width: '100%' }}
         />
       </div>
@@ -55,8 +50,7 @@ const BannerContainer = () => {
           <h2>
             {data.title}
           </h2>
-          <h3
-            className='cursive'>
+          <h3 className="cursive">
             {data.subtitle}
           </h3>
           </div>

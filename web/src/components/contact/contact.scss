@@ -24,6 +24,7 @@
             }
         }
         .methods {
+            background-color: $color-white;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
@@ -103,7 +104,7 @@
     }
 }
 
-@media (max-width: 1588px) {
+@media (max-width: 1763px) {
     .contact .main .methods>div {
         flex-basis: 50%;
         &:nth-child(even) {
