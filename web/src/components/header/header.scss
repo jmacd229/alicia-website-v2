@@ -1,5 +1,8 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
+// Header variables
+$header-btn-font-size: 1.5rem;
+$header-btn-y-padding: 10px;
 .header {
     header {
         @include shadow;
@@ -9,11 +12,12 @@
         flex-direction: column;
         align-items: center;
         background-color: $main-color;
-        padding: 0 8px 8px 8px;
+        padding: (($header-btn-font-size/1rem)*16px) + 2 * $header-btn-y-padding 8px 0 8px;
         width: 100%;
         .nav-wrapper {
             @include shadow;
             position: fixed;
+            top: 0;
             background-color: $accent-1;
             z-index: 3;
             width: 100%;
@@ -50,16 +54,16 @@
                 @include wipebtn;
                 background-color: $accent-1;
                 font-weight: 400;
-                font-size: 1.5rem;
+                line-height: $header-btn-font-size;
+                font-size: $header-btn-font-size;
                 color: $color-white;
                 text-shadow: -1px -1px 0 $accent-1-extra-dark, 1px -1px 0 $accent-1-extra-dark, -1px 1px 0 $accent-1-extra-dark, 1px 1px 0 $accent-1-extra-dark;
-                padding: 4px 8px;
+                padding: $header-btn-y-padding 8px;
             }
         }
         h1 {
-            margin: 96px 0 32px;
-            height: 200px;
-            display: flex;
+            padding: 16px 0;
+            margin: 0;
             align-items: center;
             >img {
                 height: 35vw;
@@ -93,8 +97,11 @@
 }
 
 @media (max-width: $mobile-size) {
+    $header-btn-font-size: 1rem;
+    $header-btn-y-padding: 6px;
     .header {
         header {
+            padding: (($header-btn-font-size/1rem)*16px) + 2 * $header-btn-y-padding 8px 8px 8px;
             .nav-wrapper {
                 .nav-menu {
                     width: 100%;
@@ -104,7 +111,8 @@
                 }
                 .btn {
                     font-weight: 400;
-                    font-size: 1rem;
+                    line-height: $header-btn-font-size;
+                    font-size: $header-btn-font-size;
                 }
                 .back-to-top {
                     @include shadow;
@@ -121,7 +129,6 @@
                 }
             }
             h1 {
-                margin: 32px 0 0;
                 min-height: 100px;
             }
         }
