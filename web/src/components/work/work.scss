@@ -2,12 +2,14 @@
 @import '../../styles/mixins';
 $picture-offset: 70px;
 .work {
+    margin-bottom: $picture-offset * -1;
     .main {
         display: flex;
         justify-content: flex-end;
         align-items: center;
         background-color: white;
         .left {
+            @include shadow;
             background-color: $main-color;
             position: relative;
             width: 100%;
@@ -24,27 +26,31 @@ $picture-offset: 70px;
             width: 800px;
             height: 400px;
             margin-bottom: $picture-offset;
-            h2 {
+            h3 {
                 font-family: $cursive-family;
                 color: $secondary-color;
-                font-size: 72px;
+                font-size: 80px;
                 margin-top: -60px;
                 margin-left: -36px;
                 transform: rotate(-6deg);
-                background-image: linear-gradient( 120deg, $accent-1-dark 0%, transparent 100%);
+                background-image: linear-gradient( 120deg, $accent-1 0%, transparent 100%);
                 background-repeat: no-repeat;
                 background-size: 50% 6px;
                 background-position: 0 100%;
             }
             .caption-body {
-                padding: 64px;
-                color: $secondary-color-light;
+                font-weight: 200;
+                font-size: 20px;
+                padding: 64px 112px;
                 a.booking {
                     @include shadow;
+                    font-weight: 500;
+                    text-shadow: -1px -1px 0 $accent-1-extra-dark, 1px -1px 0 $accent-1-extra-dark, -1px 1px 0 $accent-1-extra-dark, 1px 1px 0 $accent-1-extra-dark;
                     white-space: normal;
-                    background-color: $accent-1-dark !important;
+                    border: 4px solid $color-white !important;
+                    background-color: $accent-1 !important;
                     padding: 8px 16px;
-                    font-size: 18px;
+                    font-size: 20px;
                     >div {
                         display: inline-block;
                         width: 50px;
@@ -65,13 +71,14 @@ $picture-offset: 70px;
             }
         }
         .img-container {
+            @include shadow;
             width: 100%;
             height: 100%;
             max-height: 500px;
             position: relative;
             margin-bottom: $picture-offset;
             .img-bg {
-                background-color: $accent-1-light;
+                background-color: $accent-1;
                 top: 0;
                 height: 100%;
                 width: 100%;
@@ -80,8 +87,7 @@ $picture-offset: 70px;
             >.gatsby-image-wrapper {
                 height: 100%;
                 max-height: 500px;
-                opacity: 0.4;
-                filter: grayscale(1);
+                opacity: 0.7;
             }
         }
     }
@@ -89,6 +95,7 @@ $picture-offset: 70px;
 
 @media (max-width: $medium-size) {
     .work {
+        margin-bottom: 0;
         .main {
             flex-direction: column-reverse;
             height: auto;
@@ -101,8 +108,13 @@ $picture-offset: 70px;
                 left: auto;
                 width: 100%;
                 height: auto;
-                h2 {
+                h3 {
                     margin-left: 0px;
+                    margin-top: 0;
+                    transform: none;
+                    text-align: center;
+                    background-image: linear-gradient(90deg, transparent 0%, $accent-1 50%, transparent 100%);
+                    background-size: 100% 6px;
                 }
             }
             .img-container {
@@ -110,6 +122,7 @@ $picture-offset: 70px;
                 >.gatsby-image-wrapper {
                     width: 100%;
                     height: auto;
+                    max-height: 200px;
                 }
             }
         }
@@ -118,7 +131,7 @@ $picture-offset: 70px;
 
 @media (max-width: $mobile-size) {
     .work {
-        .main .caption h2 {
+        .main .caption h3 {
             font-size: 48px;
         }
         .main .caption .caption-body {

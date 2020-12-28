@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 .about-me {
     .main {
-        padding: 32px;
+        padding: 112px 32px;
         background-color: white;
         h3 {
             flex-wrap: nowrap;
@@ -20,6 +20,14 @@
             height: 25vw;
             max-width: 350px;
             max-height: 350px;
+        }
+    }
+}
+
+@media (max-width: $mobile-size) {
+    .about-me {
+        .main {
+            padding: 32px 32px;
         }
     }
 }

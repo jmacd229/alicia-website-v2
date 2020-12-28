@@ -1,14 +1,13 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import React, { createRef, RefObject, useEffect } from 'react';
 import './contact.scss';
-import lottie, { AnimationItem, AnimationDirection } from 'lottie-web';
+import lottie, { AnimationItem } from 'lottie-web';
 import email from '../../animations/email.json';
 import phone from '../../animations/phone.json';
 import location from '../../animations/location.json';
 import facebook from '../../animations/facebook.json';
 import instagram from '../../animations/instagram.json';
-import { Container } from 'react-bootstrap';
-
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 class Animation {
   constructor(data) {
     this.data = data;
@@ -25,6 +24,17 @@ interface Method {
   title: string;
   url: string;
   visible: boolean;
+}
+
+function getMethodFontSizes(id: string) {
+  switch (id) {
+    case 'email':
+      return 'clamp(0.9rem, 1.7vw, 1.25rem)';
+    case 'location':
+      return 'clamp(0.9rem, 1.8vw, 1rem)';
+    default:
+      return 'clamp(0.9rem, 2vw, 1.5rem)';
+  }
 }
 
 const Contact = () => {
@@ -57,14 +67,13 @@ const Contact = () => {
     instagram: new Animation(instagram),
   };
 
-  function createMethod(method: Method, index: number) {
+  function createMethod(method: Method) {
     return (
       <div
         key={method.id}
         data-sal='zoom-in'
-        data-sal-duration='1000'
-        data-sal-delay={(index + 1) * 200}>
-        <a
+        data-sal-duration='1000'>
+        <OutboundLink
           onMouseEnter={() => playAnimation(method.id)}
           onFocus={() => playAnimation(method.id)}
           href={method.url}
@@ -73,11 +82,13 @@ const Contact = () => {
           <div>
             <div className='icon' ref={animations[method.id]?.container}></div>
             {method.label.map((label, i) => (
-              <strong key={i}>{label}</strong>
+              <span key={i} style={{ fontSize: getMethodFontSizes(method.id) }}>
+                {label}
+              </span>
             ))}
           </div>
           <div className='title'>{method.title}</div>
-        </a>
+        </OutboundLink>
       </div>
     );
   }
@@ -107,16 +118,16 @@ const Contact = () => {
   return (
     <div id='contact' className='contact'>
       <div className='main'>
-        <div className='title-card'>
+      <div className='title-card order-2'>
           <h3 className='mixed-font-title'>
             <span>{data.title.regular}</span>
             <span className='cursive'>{data.title.cursive}</span>
           </h3>
         </div>
-        <div className='methods'>
-          {data.methods.map((method, index) =>
-            method.visible ? createMethod(method, index) : null
-          )}
+        <div className='methods order-1'>
+          {data.methods
+            .filter(method => method.visible)
+            .map((method) => createMethod(method))}
         </div>
       </div>
     </div>

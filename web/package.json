@@ -2,8 +2,8 @@
     "name": "alicia-website",
     "private": true,
     "description": "A personal website for Alicia MacDougall",
-    "version": "1.0.0",
-    "releaseDate": "12-12-2020",
+    "version": "1.1.0",
+    "releaseDate": "12-27-2020",
     "author": "Jesse MacDougall",
     "dependencies": {
         "@popperjs/core": "^2.5.4",
@@ -12,6 +12,7 @@
         "gatsby": "^2.26.1",
         "gatsby-image": "^2.5.0",
         "gatsby-plugin-google-fonts": "^1.0.1",
+        "gatsby-plugin-google-gtag": "^2.5.0",
         "gatsby-plugin-mailgo": "^0.11.2",
         "gatsby-plugin-manifest": "^2.6.1",
         "gatsby-plugin-offline": "^3.4.0",
@@ -32,10 +33,11 @@
         "react-helmet": "^6.1.0"
     },
     "devDependencies": {
+        "gatsby-plugin-root-import": "^2.0.5",
         "prettier": "2.1.2"
     },
     "scripts": {
-        "build": "gatsby build",
+        "build": "sed -i 's|\"releaseDate\": \".*\"|\"releaseDate\": \"'$(date +%m-%d-%Y)'\"|g' package.json && gatsby build",
         "develop": "gatsby develop",
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
         "start": "npm run develop",

@@ -1,11 +1,13 @@
 @import 'variables';
-$title-size: 48px;
+$title-size: 72px;
 $mobile-title-size: 32px;
 html {
     background-color: $accent-1;
+    overflow-x: hidden;
 }
 
 body {
+    overflow-x: hidden;
     color: $main-color;
     font-family: $font-family;
     font-weight: 400;
@@ -28,6 +30,10 @@ body {
     height: 0 !important;
 }
 
+.cursive {
+    font-family: $cursive-family;
+}
+
 h3.mixed-font-title {
     font-size: $title-size;
     text-align: center;
@@ -36,9 +42,9 @@ h3.mixed-font-title {
     white-space: nowrap;
      :not(.cursive) {
         font-family: $impact-family;
+        font-weight: 900;
     }
     .cursive {
-        font-family: $cursive-family;
         height: $title-size + 6px;
         border-bottom: 2px solid $main-color;
         padding-bottom: 2px;

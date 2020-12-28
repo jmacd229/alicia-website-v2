@@ -4,15 +4,16 @@
     .main {
         display: flex;
         .title-card {
-            background-color: $accent-2-extra-light;
+            z-index: 1;
+            @include shadow;
+            background-color: $accent-2-light;
             display: flex;
             align-items: center;
             width: 180px;
             min-height: 500px;
             justify-content: center;
-            border-right: 5px solid $main-color;
             h3 {
-                transform: rotate(-90deg);
+                transform: rotate(90deg);
                 letter-spacing: 1px;
                 span:not(.cursive) {
                     text-transform: uppercase;
@@ -23,26 +24,33 @@
             }
         }
         .methods {
-            flex-wrap: wrap;
-            width: 100%;
+            background-color: $color-white;
             display: flex;
+            flex-wrap: wrap;
             align-items: center;
             justify-content: space-evenly;
-            background-color: $accent-2-dark;
+            width: 100%;
+            padding: 160px 0;
+            >div {
+                display: flex;
+                justify-content: center;
+                flex-basis: 25%;
+            }
             a {
+                @include wiggle;
                 @include shadow;
-                background-color: $accent-2;
+                width: 300px;
+                height: 300px;
+                background-color: $color-white;
                 transition: background-color 500ms linear;
                 position: relative;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
                 justify-content: flex-end;
-                border: 6px solid $accent-2-extra-light;
-                margin: 20px;
+                border: 6px solid $accent-2-light;
+                margin: 16px 48px;
                 >div:not(.title) {
-                    width: 300px;
-                    height: 300px;
                     padding-bottom: 24px;
                     font-size: 24px;
                     margin-bottom: auto;
@@ -55,12 +63,13 @@
                         width: 96px;
                         height: 96px;
                     }
-                    >strong {
+                    >span {
+                        font-weight: 100;
                         transition: color 500ms linear;
-                        font-size: 16px;
                     }
                 }
                 .title {
+                    transition: color 500ms linear;
                     position: absolute;
                     z-index: 1;
                     font-family: $cursive-family;
@@ -70,42 +79,70 @@
                     flex-direction: column;
                     align-items: center;
                     width: 100%;
-                    border-top: 6px solid $accent-2-extra-light;
-                    background-color: $accent-2-extra-light;
-                    &::before {
+                    border-top: 6px solid $accent-2-light;
+                    background-color: $accent-2-light;
+                    &:before {
                         content: '';
                         width: 40px;
                         height: 40px;
                         position: absolute;
                         transform: rotate(45deg);
-                        border-top: 5px solid $accent-2-extra-light;
-                        border-left: 5px solid $accent-2-extra-light;
-                        background-color: $accent-2-extra-light;
+                        border-top: 5px solid $accent-2-light;
+                        border-left: 5px solid $accent-2-light;
+                        background-color: $accent-2-light;
                         bottom: 24px;
                         z-index: -1;
                     }
                 }
                 &:hover {
                     text-decoration: none;
-                    background-color: $accent-2-light;
-                    >div:not(.title)>strong {
-                        color: $accent-1;
-                    }
+                    background-color: $accent-1-extra-light;
+                    color: $main-color;
                 }
             }
         }
     }
 }
 
+@media (max-width: 1763px) {
+    .contact .main .methods>div {
+        flex-basis: 50%;
+        &:nth-child(even) {
+            justify-content: flex-start;
+        }
+        &:nth-child(odd) {
+            justify-content: flex-end;
+        }
+    }
+}
+
 @media (max-width: $mobile-size) {
     .contact .main {
-        flex-direction: column;
+        .methods {
+            padding: 16px 16px;
+            >div a {
+                width: 200px;
+                height: 200px;
+                >div:not(.title) .icon {
+                    width: 64px;
+                    height: 64px;
+                }
+                .title {
+                    font-size: 32px;
+                    line-height: 24px;
+                    &:before {
+                        width: 32px;
+                        height: 32px;
+                        bottom: 14px;
+                    }
+                }
+            }
+        }
+        flex-direction: column-reverse;
         .title-card {
             height: auto;
             min-height: unset;
             width: auto;
-            border-bottom: 5px solid #3e3e3e;
-            border-right: none;
             h3 {
                 transform: none;
                 margin: 16px 0;

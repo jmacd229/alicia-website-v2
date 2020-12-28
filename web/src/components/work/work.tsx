@@ -6,6 +6,7 @@ import book from '../../animations/book.json';
 import lottie, { AnimationItem } from 'lottie-web';
 import Img from 'gatsby-image';
 import './work.scss';
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
 const Work = () => {
   const data = useStaticQuery(graphql`
@@ -79,13 +80,13 @@ const Work = () => {
     <div id='work' className='work'>
       <div className='main'>
         <div className='left' data-sal="slide-right" data-sal-duration="500"></div>
-        <div className='caption' data-sal="zoom-out" data-sal-duration="1000" data-sal-delay="600">
-          <h2>{data.title}</h2>
+        <div className='caption' data-sal="zoom-out" data-sal-duration="1000" data-sal-delay="200">
+          <h3>{data.title}</h3>
           <div className='caption-body'>
             <BlockContent blocks={data._rawBody}></BlockContent>
-            <div className='d-flex flex-column align-items-center mt-5'>
+            <div className='d-flex flex-column align-items-center mt-2'>
               {data.bookVisible ? (
-                <a
+                <OutboundLink
                   onMouseEnter={playBookAnimation}
                   onMouseLeave={playBookAnimation}
                   onFocus={playBookAnimation}
@@ -96,10 +97,10 @@ const Work = () => {
                   rel="noreferrer">
                   <div className='mr-2' ref={animations.book.container}></div>
                   {data.bookLink.text}
-                </a>
+                </OutboundLink>
               ) : null}
               {data.virtualVisible ? (
-                <a
+                <OutboundLink
                   onMouseEnter={playVirtualAnimation}
                   onMouseLeave={playVirtualAnimation}
                   onFocus={playVirtualAnimation}
@@ -112,13 +113,13 @@ const Work = () => {
                   <div
                     className='ml-2'
                     ref={animations.virtual.container}></div>
-                </a>
+                </OutboundLink>
               ) : null}
             </div>
           </div>
           <div className='line'></div>
         </div>
-        <div className='img-container' data-sal="slide-left" data-sal-duration="500" data-sal-delay="300">
+        <div className='img-container' data-sal="slide-left" data-sal-duration="500" data-sal-delay="100">
           <div className='img-bg'></div>
           <Img fluid={data.image.asset.fluid} alt='' />
         </div>

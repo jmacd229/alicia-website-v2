@@ -58,7 +58,7 @@ const Header = ({ sections }) => {
   return (
     <div className='header'>
       <header>
-        <div className='nav-wrapper'>
+        <div role='navigation' className='nav-wrapper'>
           <div className='nav-menu'>
             <div>
             {sections?.map((section, i) => (
@@ -85,13 +85,9 @@ const Header = ({ sections }) => {
           </Fade>
         </div>
         <h1>
-          <img src={logoImg} alt='Alicia MacDougall' />
+          <img src={logoImg} alt='Dr. Alicia MacDougall, Naturopathic Doctor' />
         </h1>
-        <div className='triangle light'></div>
       </header>
-      <div className='d-flex justify-content-center'>
-        <div className='triangle'></div>
-      </div>
     </div>
   );
 };
