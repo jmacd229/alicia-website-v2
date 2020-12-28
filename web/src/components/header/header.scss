@@ -2,7 +2,7 @@
 @import '../../styles/mixins';
 // Header variables
 $header-btn-font-size: 1.5rem;
-$header-btn-y-padding: 10px;
+$header-btn-y-padding: 6px;
 .header {
     header {
         @include shadow;

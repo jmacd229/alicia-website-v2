@@ -50,9 +50,9 @@ const BannerContainer = () => {
           <h2>
             {data.title}
           </h2>
-          <h3 className="cursive">
+          {/* <h3 className="cursive">
             {data.subtitle}
-          </h3>
+          </h3> */}
           </div>
           <div className="body" data-sal='fade' data-sal-duration='1000'>
             <BlockContent blocks={data._rawBody}></BlockContent>

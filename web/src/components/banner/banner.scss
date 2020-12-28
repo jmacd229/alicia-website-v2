@@ -1,7 +1,8 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
 .banner {
-    height: 700px;
+    height: 550px;
+    overflow-y: hidden;
     background-color: $color-black;
     position: relative;
     display: flex;
@@ -12,7 +13,6 @@
         height: 170%;
         opacity: 0.7;
         z-index: 0;
-        opacity: 0.5;
         >div {
             height: 100%;
         }
@@ -27,19 +27,18 @@
         z-index: 1;
         position: absolute;
         font-weight: 400;
-        padding: 0 16px;
+        padding: 16px;
         color: $color-black;
         >div {
             @include shadow;
             border: 8px solid $accent-1;
-            padding: 32px 16px;
-            margin-top: 32px;
-            max-width: 600px;
+            padding: 16px 16px;
+            max-width: 700px;
             background-color: $color-white;
             position: relative;
             display: flex;
             flex-direction: column;
-            align-items: flex-end;
+            align-items: center;
             text-align: center;
             justify-content: center;
             >div {
@@ -52,17 +51,10 @@
                     font-weight: 200;
                     text-align: center;
                     color: $main-color;
-                    margin-bottom: 0;
-                    font-size: clamp(32px, 7vw, 56px);
+                    margin-bottom: 24px;
+                    font-size: clamp(32px, 7vw, 40px);
                     letter-spacing: -2px;
                     word-spacing: 8px;
-                }
-                h3 {
-                    font-weight: 200;
-                    text-align: center;
-                    color: $accent-1-dark;
-                    font-size: clamp(24px, 5vw, 40px);
-                    margin-bottom: 32px;
                 }
             }
             .body {
