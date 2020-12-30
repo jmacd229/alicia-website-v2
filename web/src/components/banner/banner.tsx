@@ -8,28 +8,24 @@ const BannerContainer = () => {
   const [yOffset, setYOffset] = useState(0);
   const data = useStaticQuery(graphql`
     query MyQuery {
-      allSanityCarousel(limit: 1) {
-        edges {
-          node {
-            subtitle
-            title
-            _rawBody
-            slides {
-              alt
-              asset {
-                fluid(maxHeight: 700) {
-                  ...GatsbySanityImageFluid
-                }
-              }
+      sanityCarousel {
+        subtitle
+        title
+        _rawBody
+        slides {
+          alt
+          asset {
+            fluid(maxHeight: 700) {
+              ...GatsbySanityImageFluid
             }
           }
         }
       }
     }
-  `).allSanityCarousel.edges[0].node;
+  `).sanityCarousel;
 
   useEffect(() => {
-    const onScroll = e =>setYOffset(e.target.documentElement.scrollTop);
+    const onScroll = e => setYOffset(e.target.documentElement.scrollTop);
     window.addEventListener('scroll', onScroll);
 
     return () => window.removeEventListener('scroll', onScroll);
@@ -37,7 +33,7 @@ const BannerContainer = () => {
 
   return (
     <div className='banner'>
-      <div className='img-container' style={{top: `-${yOffset/2}px` }}>
+      <div className='img-container' style={{ top: `-${yOffset / 2}px` }}>
         <Img
           fluid={data.slides[0].asset.fluid}
           alt={data.slides[0].alt}
@@ -47,14 +43,9 @@ const BannerContainer = () => {
       <div className='front'>
         <div>
           <div data-sal='fade' data-sal-duration='1000'>
-          <h2>
-            {data.title}
-          </h2>
-          {/* <h3 className="cursive">
-            {data.subtitle}
-          </h3> */}
+            <h2>{data.title}</h2>
           </div>
-          <div className="body" data-sal='fade' data-sal-duration='1000'>
+          <div className='body' data-sal='fade' data-sal-duration='1000'>
             <BlockContent blocks={data._rawBody}></BlockContent>
           </div>
         </div>
