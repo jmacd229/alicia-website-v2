@@ -2,7 +2,7 @@
     "name": "alicia-website",
     "private": true,
     "description": "A personal website for Alicia MacDougall",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "releaseDate": "12-27-2020",
     "author": "Jesse MacDougall",
     "dependencies": {
@@ -30,7 +30,8 @@
         "react": "^16.12.0",
         "react-bootstrap": "^1.4.0",
         "react-dom": "^16.12.0",
-        "react-helmet": "^6.1.0"
+        "react-helmet": "^6.1.0",
+        "sweetalert2": "^10.12.6"
     },
     "devDependencies": {
         "gatsby-plugin-root-import": "^2.0.5",

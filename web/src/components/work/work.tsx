@@ -11,33 +11,29 @@ import { OutboundLink } from 'gatsby-plugin-google-gtag';
 const Work = () => {
   const data = useStaticQuery(graphql`
     query WorkQuery {
-      allSanityWork {
-        edges {
-          node {
-            title
-            _rawBody
-            bookVisible
-            bookLink {
-              text
-              url
-            }
-            virtualVisible
-            virtualLink {
-              text
-              url
-            }
-            image {
-              asset {
-                fluid(maxHeight: 500) {
-                  ...GatsbySanityImageFluid
-                }
-              }
+      sanityWork {
+        title
+        _rawBody
+        bookVisible
+        bookLink {
+          text
+          url
+        }
+        virtualVisible
+        virtualLink {
+          text
+          url
+        }
+        image {
+          asset {
+            fluid(maxHeight: 500) {
+              ...GatsbySanityImageFluid
             }
           }
         }
       }
     }
-  `).allSanityWork.edges[0].node;
+  `).sanityWork;
   const animations = {
     book: { item: null, container: createRef<HTMLDivElement>(), data: book },
     virtual: {
@@ -79,8 +75,15 @@ const Work = () => {
   return (
     <div id='work' className='work'>
       <div className='main'>
-        <div className='left' data-sal="slide-right" data-sal-duration="500"></div>
-        <div className='caption' data-sal="zoom-out" data-sal-duration="1000" data-sal-delay="200">
+        <div
+          className='left'
+          data-sal='slide-right'
+          data-sal-duration='500'></div>
+        <div
+          className='caption'
+          data-sal='zoom-out'
+          data-sal-duration='1000'
+          data-sal-delay='200'>
           <h3>{data.title}</h3>
           <div className='caption-body'>
             <BlockContent blocks={data._rawBody}></BlockContent>
@@ -93,8 +96,8 @@ const Work = () => {
                   onBlur={playBookAnimation}
                   className='booking mb-3'
                   href={data.bookLink.url}
-                  target="_blank"
-                  rel="noreferrer">
+                  target='_blank'
+                  rel='noreferrer'>
                   <div className='mr-2' ref={animations.book.container}></div>
                   {data.bookLink.text}
                 </OutboundLink>
@@ -107,8 +110,8 @@ const Work = () => {
                   onBlur={playVirtualAnimation}
                   className='booking'
                   href={data.virtualLink.url}
-                  target="_blank"
-                  rel="noreferrer">
+                  target='_blank'
+                  rel='noreferrer'>
                   {data.virtualLink.text}
                   <div
                     className='ml-2'
@@ -119,7 +122,11 @@ const Work = () => {
           </div>
           <div className='line'></div>
         </div>
-        <div className='img-container' data-sal="slide-left" data-sal-duration="500" data-sal-delay="100">
+        <div
+          className='img-container'
+          data-sal='slide-left'
+          data-sal-duration='500'
+          data-sal-delay='100'>
           <div className='img-bg'></div>
           <Img fluid={data.image.asset.fluid} alt='' />
         </div>

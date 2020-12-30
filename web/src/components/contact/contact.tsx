@@ -40,25 +40,21 @@ function getMethodFontSizes(id: string) {
 const Contact = () => {
   const data = useStaticQuery(graphql`
     query ContactQuery {
-      allSanityContact {
-        edges {
-          node {
-            title {
-              regular
-              cursive
-            }
-            methods {
-              id
-              label
-              title
-              url
-              visible
-            }
-          }
+      sanityContact {
+        title {
+          regular
+          cursive
+        }
+        methods {
+          id
+          label
+          title
+          url
+          visible
         }
       }
     }
-  `).allSanityContact.edges[0].node;
+  `).sanityContact;
   const animations = {
     email: new Animation(email),
     phone: new Animation(phone),
@@ -69,10 +65,7 @@ const Contact = () => {
 
   function createMethod(method: Method) {
     return (
-      <div
-        key={method.id}
-        data-sal='zoom-in'
-        data-sal-duration='1000'>
+      <div key={method.id} data-sal='zoom-in' data-sal-duration='1000'>
         <OutboundLink
           onMouseEnter={() => playAnimation(method.id)}
           onFocus={() => playAnimation(method.id)}
@@ -118,7 +111,7 @@ const Contact = () => {
   return (
     <div id='contact' className='contact'>
       <div className='main'>
-      <div className='title-card order-2'>
+        <div className='title-card order-2'>
           <h3 className='mixed-font-title'>
             <span>{data.title.regular}</span>
             <span className='cursive'>{data.title.cursive}</span>
@@ -127,7 +120,7 @@ const Contact = () => {
         <div className='methods order-1'>
           {data.methods
             .filter(method => method.visible)
-            .map((method) => createMethod(method))}
+            .map(method => createMethod(method))}
         </div>
       </div>
     </div>

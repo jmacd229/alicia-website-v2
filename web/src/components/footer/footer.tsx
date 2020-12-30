@@ -1,34 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './footer.scss';
 import packageJson from '../../../package.json';
 import logoImg from '../../images/logo.svg';
 import { OutboundLink } from 'gatsby-plugin-google-gtag';
 import { graphql, useStaticQuery } from 'gatsby';
+import Swal from 'sweetalert2';
 
 const Footer = () => {
-  const contactMethods = useStaticQuery(graphql`
+  const data = useStaticQuery(graphql`
     query footerQuery {
-      allSanityContact {
-        edges {
-          node {
-            methods {
-              id
-              label
-              title
-              url
-            }
-          }
+      sanityContact {
+        methods {
+          id
+          label
+          title
+          url
         }
       }
+      sanityPrivacy {
+        body
+      }
     }
-  `).allSanityContact.edges[0].node.methods;
+  `);
+  const contactMethods = data.sanityContact.methods;
+  const privacy = data.sanityPrivacy.body;
 
   const materialIcons = {
     email: 'email',
     instagram: 'camera_alt',
     facebook: 'facebook',
   };
-
+  
   return (
     <footer className='footer flex-md-row'>
       <img
@@ -51,19 +53,38 @@ const Footer = () => {
           Last Updated: {new Date(packageJson.releaseDate).toDateString()}
         </span>
         <span>V{packageJson.version}</span>
+        <button
+          className='btn privacy'
+          onClick={() =>
+            Swal.fire({
+              title: 'Privacy Policy',
+              html: privacy.replace(/\n/g,'<br>'),
+              icon: 'info',
+              width: '64rem',
+              customClass: {
+                content: 'privacy-modal',
+                confirmButton: 'privacy-btn',
+                icon: 'privacy-icon'
+              }
+            })
+          }>
+          Privacy Policy
+        </button>
       </div>
       <div className='socials flex-md-column mt-md-0'>
-        {contactMethods.filter((method) => Object.keys(materialIcons).includes(method.id)).map(method => (
-          <a
-            key={method.id}
-            href={method.url}
-            aria-label={`${method.title} ${method.label}`}
-            target='_blank'
-            rel='noreferrer'
-            className='material-icons'>
-            {materialIcons[method.id]}
-          </a>
-        ))}
+        {contactMethods
+          .filter(method => Object.keys(materialIcons).includes(method.id))
+          .map(method => (
+            <a
+              key={method.id}
+              href={method.url}
+              aria-label={`${method.title} ${method.label}`}
+              target='_blank'
+              rel='noreferrer'
+              className='material-icons'>
+              {materialIcons[method.id]}
+            </a>
+          ))}
       </div>
     </footer>
   );
