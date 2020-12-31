@@ -75,7 +75,7 @@ const Footer = () => {
         {contactMethods
           .filter(method => Object.keys(materialIcons).includes(method.id))
           .map(method => (
-            <a
+            <OutboundLink
               key={method.id}
               href={method.url}
               aria-label={`${method.title} ${method.label}`}
@@ -83,7 +83,7 @@ const Footer = () => {
               rel='noreferrer'
               className='material-icons'>
               {materialIcons[method.id]}
-            </a>
+            </OutboundLink>
           ))}
       </div>
     </footer>

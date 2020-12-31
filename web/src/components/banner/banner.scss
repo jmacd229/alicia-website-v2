@@ -1,5 +1,6 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
+$bullet-font-size: 16px;
 .banner {
     height: 550px;
     overflow-y: hidden;
@@ -67,20 +68,26 @@
                 }
                 ul {
                     font-weight: 400;
-                    font-size: 16px;
+                    font-size: $bullet-font-size;
                     list-style-type: none;
                     columns: 2;
                     margin: 0 16px;
                     -webkit-columns: 2;
                     -moz-columns: 2;
                     li {
+                        display: flex;
+                        flex-direction: row-reverse;
+                        justify-content: flex-end;
+                        align-items: center;
+                        white-space: nowrap;
                         position: relative;
                         text-align: left;
+                        vertical-align: middle;
                         &:after {
                             content: '';
                             margin-left: -16px;
-                            position: absolute;
-                            left: 0;
+                            position: relative;
+                            left: -8px;
                             width: 0;
                             height: 0;
                             border-top: 8px solid transparent;
@@ -110,6 +117,16 @@
                 max-width: unset;
                 width: 100%;
                 text-align: center;
+                .body {
+                    p {
+                        text-align: center;
+                    }
+                    ul {
+                        columns: 1;
+                        -webkit-columns: 1;
+                        -moz-columns: 1;
+                    }
+                }
             }
         }
     }
@@ -127,9 +144,10 @@
                 }
                 .body {
                     padding: 0;
-                    font-size: 14px;
+                    font-size: 16px;
+                    color: $color-black;
                     ul {
-                        font-size: 12px;
+                        font-size: 14px;
                         margin: 0 8px;
                     }
                 }
