@@ -19,7 +19,9 @@ export function Chat() {
       fjs.parentNode.insertBefore(js, fjs);
     })(document, 'script', 'facebook-jssdk');
     setTimeout(() => {
-      document.getElementsByTagName('iframe').foreach(frame => {
+      const iFrames = document.getElementsByTagName('iframe');
+      for (let i = 0; i < iFrames.length; i++) {
+        const frame = iFrames[i];
         if (frame && frame.attributes && frame.attributes['data-testid']) {
           const id = frame.attributes['data-testid'].value;
           switch (id) {
@@ -36,7 +38,7 @@ export function Chat() {
               break;
           }
         }
-      });
+      }
     }, 500);
   });
 
