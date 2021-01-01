@@ -19,8 +19,8 @@ const Layout = ({sections, children }) => {
   return (
     <>
       <Header sections={sections}/>
-      <Chat/>
         <main>{children}
+        {process.env.NODE_ENV === "production" ? <Chat/> : null}
         </main>
         <Footer></Footer>
     </>
