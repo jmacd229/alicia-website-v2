@@ -15,6 +15,8 @@ import contact from './contact'
 import contact_method from './contact_method'
 import mixed_font_text from './mixed_font_text'
 import privacy from './privacy'
+import location from './location'
+import booking from './booking'
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -34,6 +36,8 @@ export default createSchema({
     contact,
     contact_method,
     mixed_font_text,
-    privacy
+    privacy,
+    location,
+    booking
   ]),
 })

@@ -17,9 +17,9 @@ $header-btn-y-padding: 6px;
         .nav-wrapper {
             @include shadow;
             position: fixed;
+            z-index: 3;
             top: 0;
             background-color: $accent-1;
-            z-index: 3;
             width: 100%;
             display: flex;
             justify-content: center;

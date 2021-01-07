@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { createRef, useEffect, useState } from 'react';
-import logoImg from '../../images/logo.svg';
+import logoImg from '../../images/alicia_macdougall_naturopathic_doctor_logo.svg'
 import lottie from 'lottie-web';
 import chevron from '../../animations/chevron.json';
 import './header.scss';
@@ -85,7 +85,7 @@ const Header = ({ sections }) => {
           </Fade>
         </div>
         <h1>
-          <img src={logoImg} alt='Dr. Alicia MacDougall, Naturopathic Doctor' />
+          <img src={logoImg} alt='Dr. Alicia MacDougall - Naturopathic Doctor' />
         </h1>
       </header>
     </div>

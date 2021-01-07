@@ -2,7 +2,7 @@ export default {
     name: "work",
     title: "Work with Me",
     type: "document",
-    fieldsets: [{ name: "book", title: "Book button" },{ name: "virtual", title: "Virtual button" }],
+    fieldsets: [{ name: "virtual", title: "Virtual Booking" }],
     __experimental_actions: ['update', 'publish'], 
     fields: [
       {
@@ -26,19 +26,6 @@ export default {
           },
         ],
       },
-      {
-        title: "Visible",
-        name: "bookVisible",
-        type: "boolean",
-        validation: (Rule) => Rule.required(),
-        fieldset: "book",
-      },
-        {
-          title: "Link",
-          name: "bookLink",
-          type: "link",
-          fieldset: "book",
-        },
         {
           title: "Visible",
           name: "virtualVisible",
@@ -52,6 +39,16 @@ export default {
             type: "link",
             fieldset: "virtual",
           },
+            {
+              title: "In-person Booking",
+              name: "bookLink",
+              type: "array",
+              of: [
+                {
+                  type: "booking",
+                },
+              ],
+            },
       {
         name: "image",
         title: "Background image",

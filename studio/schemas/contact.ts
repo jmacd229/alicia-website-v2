@@ -25,6 +25,19 @@ export default {
           },
         ],
       },
+      {
+        name: "locations",
+        title: "Locations",
+        type: "array",
+        of: [
+          {
+              name: "location",
+              title: "Location",
+              type: "reference",
+              to: [{type: 'location'}]
+          },
+        ],
+      },
     ],
   };
   
