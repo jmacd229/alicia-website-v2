@@ -39,10 +39,20 @@
                 padding: 16px;
                 padding-top: 128px;
                 &.locations {
-                    grid-template-columns: 1fr 1fr;
+                    display: flex;
+                    justify-content: space-evenly;
                     background-color: $accent-1-extra-light;
                     padding-top: 16px;
                     padding-bottom: 96px;
+                    >div {
+                        margin-right: 40px;
+                        &:first-of-type {
+                            margin-left: 120px;
+                        }
+                        &:last-of-type {
+                            margin-right: 160px;
+                        }
+                    }
                 }
                 .methods-title {
                     font-family: $impact-family;
@@ -168,8 +178,10 @@
             grid-template-columns: unset;
             &.locations {
                 padding-bottom: 16px;
-                grid-template-columns: unset;
-                >div {
+                flex-direction: column;
+                >div:first-of-type,
+                >div:last-of-type {
+                    margin-right: 0;
                     margin-left: -32px;
                 }
             }
