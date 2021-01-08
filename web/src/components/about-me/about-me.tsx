@@ -40,7 +40,7 @@ const AboutMe = () => {
           <div className='d-flex flex-column flex-md-row align-items-center'>
             <div data-sal='fade' data-sal-duration='500'>
               <BlockContent
-                className='body px-3 px-md-5'
+                className='body px-4 px-md-5'
                 blocks={data._rawBody}></BlockContent>
             </div>
             <div data-sal='zoom-in' data-sal-duration='500'>

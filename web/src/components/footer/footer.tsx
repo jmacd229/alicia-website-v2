@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './footer.scss';
 import packageJson from '../../../package.json';
-import logoImg from '../../images/logo.svg';
+import logoImg from '../../images/alicia_macdougall_naturopathic_doctor_logo.svg';
 import { OutboundLink } from 'gatsby-plugin-google-gtag';
 import { graphql, useStaticQuery } from 'gatsby';
 import Swal from 'sweetalert2';
@@ -11,7 +11,7 @@ const Footer = () => {
     query footerQuery {
       sanityContact {
         methods {
-          id
+          sanityId
           label
           title
           url
@@ -36,7 +36,7 @@ const Footer = () => {
       <img
         className='title mr-5'
         src={logoImg}
-        alt='Dr. Alicia MacDougall, Naturopathic Doctor'
+        alt='Dr. Alicia MacDougall - Naturopathic Doctor'
       />
       <div className='mt-md-0'>
         <span>
@@ -73,17 +73,17 @@ const Footer = () => {
       </div>
       <div className='socials flex-md-column mt-md-0'>
         {contactMethods
-          .filter(method => Object.keys(materialIcons).includes(method.id))
+          .filter(method => Object.keys(materialIcons).includes(method.sanityId))
           .map(method => (
-            <a
-              key={method.id}
+            <OutboundLink
+              key={method.sanityId}
               href={method.url}
               aria-label={`${method.title} ${method.label}`}
               target='_blank'
               rel='noreferrer'
               className='material-icons'>
-              {materialIcons[method.id]}
-            </a>
+              {materialIcons[method.sanityId]}
+            </OutboundLink>
           ))}
       </div>
     </footer>

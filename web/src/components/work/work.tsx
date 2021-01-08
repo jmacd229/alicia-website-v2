@@ -2,11 +2,11 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React, { createRef, useEffect } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import virtual from '../../animations/virtual.json';
-import book from '../../animations/book.json';
 import lottie, { AnimationItem } from 'lottie-web';
 import Img from 'gatsby-image';
 import './work.scss';
 import { OutboundLink } from 'gatsby-plugin-google-gtag';
+import { Weekdays } from '../../models/weekdays.enum';
 
 const Work = () => {
   const data = useStaticQuery(graphql`
@@ -14,9 +14,12 @@ const Work = () => {
       sanityWork {
         title
         _rawBody
-        bookVisible
         bookLink {
-          text
+          location {
+            sanityId
+            title
+            days
+          }
           url
         }
         virtualVisible
@@ -35,7 +38,6 @@ const Work = () => {
     }
   `).sanityWork;
   const animations = {
-    book: { item: null, container: createRef<HTMLDivElement>(), data: book },
     virtual: {
       item: null,
       container: createRef<HTMLDivElement>(),
@@ -57,9 +59,6 @@ const Work = () => {
     });
   }, []);
 
-  function playBookAnimation() {
-    playAnimation('book');
-  }
   function playVirtualAnimation() {
     playAnimation('virtual');
   }
@@ -70,6 +69,19 @@ const Work = () => {
       anim.play();
       anim.setDirection(anim.playDirection === -1 ? 1 : -1);
     }
+  }
+
+  function getDays(days: Array<string>) {
+    return days.map((day, i) => {
+      return (
+        <div className="text-center" key={i}>
+          {i !== 0 && i === days.length - 1 ? (
+            <div className='and'>&</div>
+          ) : null}
+          <div key={day}>{Weekdays[day]}s</div>
+          </div>
+      );
+    });
   }
 
   return (
@@ -84,24 +96,10 @@ const Work = () => {
           data-sal='zoom-out'
           data-sal-duration='1000'
           data-sal-delay='200'>
-          <h3>{data.title}</h3>
+          <h3 className='mt-2'>{data.title}</h3>
           <div className='caption-body'>
             <BlockContent blocks={data._rawBody}></BlockContent>
-            <div className='d-flex flex-column align-items-center mt-2'>
-              {data.bookVisible ? (
-                <OutboundLink
-                  onMouseEnter={playBookAnimation}
-                  onMouseLeave={playBookAnimation}
-                  onFocus={playBookAnimation}
-                  onBlur={playBookAnimation}
-                  className='booking mb-3'
-                  href={data.bookLink.url}
-                  target='_blank'
-                  rel='noreferrer'>
-                  <div className='mr-2' ref={animations.book.container}></div>
-                  {data.bookLink.text}
-                </OutboundLink>
-              ) : null}
+            <div className='d-flex flex-column h-100 justify-content-center my-3 my-sm-5'>
               {data.virtualVisible ? (
                 <OutboundLink
                   onMouseEnter={playVirtualAnimation}
@@ -118,6 +116,22 @@ const Work = () => {
                     ref={animations.virtual.container}></div>
                 </OutboundLink>
               ) : null}
+              {data.bookLink.map(booking => {
+                return (
+                  <div
+                    className='in-person-booking'
+                    key={booking.location.sanityId}>
+                    <OutboundLink
+                      className='booking'
+                      href={booking.url}
+                      target='_blank'
+                      rel='noreferrer'>
+                      {booking.location.title}
+                    </OutboundLink>
+                    <div className='days'>{getDays(booking.location.days)}</div>
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className='line'></div>

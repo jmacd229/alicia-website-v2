@@ -1,7 +1,7 @@
 module.exports = {
     siteMetadata: {
         title: `Alicia MacDougall`,
-        description: `A website for Alicia MacDougall, Naturopathic doctor.`,
+        description: `Naturopathic Medicine for Athletes: Naturopathic Medicine for Athletes: If your health isn’t in check, neither is your performance. Let’s work together to perfect your nutrition, sleep, stress, recovery, hydration, and anything else that you may have going on. Getting the basics down goes a long way, and I am a big believer in preventative health.`,
         author: `Jesse MacDougall`,
     },
     plugins: [

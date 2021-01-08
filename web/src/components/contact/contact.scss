@@ -23,121 +23,174 @@
                 }
             }
         }
-        .methods {
-            background-color: $color-white;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-evenly;
+        .methods-container {
+            order: 1;
             width: 100%;
-            padding: 160px 0;
-            >div {
-                display: flex;
-                justify-content: center;
-                flex-basis: 25%;
-            }
-            a {
-                @include wiggle;
-                @include shadow;
-                width: 300px;
-                height: 300px;
-                background-color: $color-white;
-                transition: background-color 500ms linear;
+            display: flex;
+            flex-direction: column;
+            .methods {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                grid-column-gap: 16px;
+                grid-row-gap: 16px;
+                place-items: center;
+                width: 100%;
                 position: relative;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: flex-end;
-                border: 6px solid $accent-2-light;
-                margin: 16px 48px;
-                >div:not(.title) {
-                    padding-bottom: 24px;
-                    font-size: 24px;
-                    margin-bottom: auto;
-                    margin-top: auto;
+                padding: 16px;
+                padding-top: 128px;
+                &.locations {
                     display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                    justify-content: center;
-                    .icon {
-                        width: 96px;
-                        height: 96px;
-                    }
-                    >span {
-                        font-weight: 100;
-                        transition: color 500ms linear;
+                    justify-content: space-evenly;
+                    background-color: $accent-1-extra-light;
+                    padding-top: 16px;
+                    padding-bottom: 96px;
+                    >div {
+                        margin-right: 40px;
+                        &:first-of-type {
+                            margin-left: 120px;
+                        }
+                        &:last-of-type {
+                            margin-right: 160px;
+                        }
                     }
                 }
-                .title {
-                    transition: color 500ms linear;
-                    position: absolute;
-                    z-index: 1;
-                    font-family: $cursive-family;
+                .methods-title {
+                    font-family: $impact-family;
+                    font-weight: 100;
+                    color: $accent-1-light;
+                    text-shadow: -1px -1px 0 $accent-1-extra-dark, 1px -1px 0 $accent-1-extra-dark, -1px 1px 0 $accent-1-extra-dark, 1px 1px 0 $accent-1-extra-dark;
                     font-size: 48px;
-                    line-height: 40px;
+                    padding-top: 16px;
+                }
+                >div {
                     display: flex;
-                    flex-direction: column;
-                    align-items: center;
+                    position: relative;
+                    max-width: 300px;
                     width: 100%;
-                    border-top: 6px solid $accent-2-light;
-                    background-color: $accent-2-light;
                     &:before {
                         content: '';
-                        width: 40px;
-                        height: 40px;
-                        position: absolute;
-                        transform: rotate(45deg);
-                        border-top: 5px solid $accent-2-light;
-                        border-left: 5px solid $accent-2-light;
+                        display: inline-block;
+                        width: 1px;
+                        height: 0;
+                        padding-bottom: 100%;
+                    }
+                    .hours {
+                        @include shadow;
+                        width: 32px;
+                        height: 100%;
                         background-color: $accent-2-light;
-                        bottom: 24px;
-                        z-index: -1;
+                        position: absolute;
+                        right: -40px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: space-evenly;
+                        .day {
+                            font-family: $impact-family;
+                            background-color: $accent-1-dark;
+                            color: $color-white;
+                            position: relative;
+                            width: 1.5rem;
+                            height: 1.5rem;
+                            line-height: 1.5rem;
+                            text-align: center;
+                            border-radius: 50%;
+                            &[aria-disabled='true'] {
+                                background-color: $accent-2;
+                                color: $accent-2-dark;
+                            }
+                        }
                     }
                 }
-                &:hover {
-                    text-decoration: none;
-                    background-color: $accent-1-extra-light;
-                    color: $main-color;
+                a {
+                    @include wiggle;
+                    @include shadow;
+                    background-color: $color-white;
+                    transition: background-color 500ms linear;
+                    display: flex;
+                    width: 100%;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-end;
+                    border: 6px solid $accent-2-light;
+                    >div:not(.title) {
+                        padding-bottom: 56px;
+                        font-size: 24px;
+                        margin-bottom: auto;
+                        margin-top: auto;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: center;
+                        .icon {
+                            width: 96px;
+                            height: 96px;
+                        }
+                        >span {
+                            font-weight: 100;
+                            line-height: 100%;
+                            transition: color 500ms linear;
+                        }
+                    }
+                    .title {
+                        transition: color 500ms linear;
+                        text-align: center;
+                        position: absolute;
+                        z-index: 1;
+                        font-family: $cursive-family;
+                        font-size: 48px;
+                        line-height: 90%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        width: 100%;
+                        padding: 0 8px;
+                        border-top: 6px solid $accent-2-light;
+                        background-color: $accent-2-light;
+                        &:before {
+                            content: '';
+                            width: 15%;
+                            padding-top: 15%;
+                            position: absolute;
+                            transform: rotate(45deg);
+                            background-color: $accent-2-light;
+                            bottom: 55%;
+                            z-index: -1;
+                        }
+                    }
+                    &:hover {
+                        text-decoration: none;
+                        background-color: $accent-2-extra-light;
+                        color: $main-color;
+                    }
                 }
             }
         }
     }
 }
 
-@media (max-width: 1763px) {
-    .contact .main .methods>div {
-        flex-basis: 50%;
-        &:nth-child(even) {
-            justify-content: flex-start;
-        }
-        &:nth-child(odd) {
-            justify-content: flex-end;
+@media (max-width: $medium-size) {
+    .contact .main .methods-container {
+        .methods {
+            padding-left: 32px;
+            padding-right: 32px;
+            padding-top: 16px;
+            grid-template-columns: unset;
+            &.locations {
+                padding-bottom: 16px;
+                flex-direction: column;
+                >div:first-of-type,
+                >div:last-of-type {
+                    margin-right: 0;
+                    margin-left: -32px;
+                }
+            }
         }
     }
 }
 
 @media (max-width: $mobile-size) {
     .contact .main {
-        .methods {
-            padding: 16px 16px;
-            >div a {
-                width: 200px;
-                height: 200px;
-                >div:not(.title) .icon {
-                    width: 64px;
-                    height: 64px;
-                }
-                .title {
-                    font-size: 32px;
-                    line-height: 24px;
-                    &:before {
-                        width: 32px;
-                        height: 32px;
-                        bottom: 14px;
-                    }
-                }
-            }
-        }
         flex-direction: column-reverse;
         .title-card {
             height: auto;

@@ -2,6 +2,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 import React, { useRef, useState } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import './resources.scss';
+import { OutboundLink } from 'gatsby-plugin-google-gtag';
 
 interface ResourceData {
   visible: boolean;
@@ -94,9 +95,9 @@ const Resources = () => {
   function getLink() {
     if (activeResource && activeResource.link) {
       return (
-        <a target='_blank' rel='noreferrer' href={activeResource.link.url}>
+        <OutboundLink target='_blank' rel='noreferrer' href={activeResource.link.url}>
           {activeResource.link.text}
-        </a>
+        </OutboundLink>
       );
     }
   }
