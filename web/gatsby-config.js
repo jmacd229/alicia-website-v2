@@ -14,14 +14,21 @@ module.exports = {
             },
         },
         {
-            resolve: 'gatsby-plugin-google-fonts',
+            resolve: 'gatsby-plugin-webfonts',
             options: {
-                fonts: [
-                    'source sans pro\:200,300,400,700',
-                    'material icons',
-                    'dancing script',
-                    'roboto slab\:100,200,400,900',
-                ],
+                fonts: {
+                    google: [{
+                            family: 'Source Sans Pro',
+                            variants: [200, 300, 400, 700]
+                        },
+                        { family: 'Material Icons' },
+                        { family: 'Dancing Script' },
+                        {
+                            family: 'Roboto Slab',
+                            variants: [100, 200, 400, 900]
+                        }
+                    ]
+                }
             },
         },
         `gatsby-transformer-sharp`,
@@ -57,6 +64,14 @@ module.exports = {
             resolve: `gatsby-plugin-google-gtag`,
             options: {
                 trackingIds: ["G-ZZM4BTRZPE", "GTM-N84THGP"],
+            }
+        },
+        {
+            resolve: `gatsby-plugin-purgecss`,
+            options: {
+                printRejected: true,
+                ignore: ['sal.js/'],
+                whitelistPatternsChildren: [/sanity-body/, /gatsby-image-wrapper/]
             }
         }
     ],
