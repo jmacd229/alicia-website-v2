@@ -2,7 +2,7 @@
     "name": "alicia-website",
     "private": true,
     "description": "A personal website for Alicia MacDougall",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "releaseDate": "12-27-2020",
     "author": "Jesse MacDougall",
     "dependencies": {
