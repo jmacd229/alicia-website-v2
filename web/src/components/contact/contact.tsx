@@ -93,23 +93,24 @@ const Contact = () => {
   };
 
   function createMethod(method: Method) {
+    const id = method.sanityId ? method.sanityId : 'location1';
     return (
-      <div data-sal='zoom-in' data-sal-duration='1000' key={method.sanityId}>
+      <div data-sal='zoom-in' data-sal-duration='1000' key={id}>
         <OutboundLink
-          onMouseEnter={() => playAnimation(method.sanityId)}
-          onFocus={() => playAnimation(method.sanityId)}
+          onMouseEnter={() => playAnimation(id)}
+          onFocus={() => playAnimation(id)}
           href={method.url}
           target='_blank'
           rel='noreferrer'>
           <div>
             <div
               className='icon'
-              ref={animations[method.sanityId]?.container}></div>
+              ref={animations[id]?.container}></div>
             {getLabel(method)}
           </div>
           <div
             className='title'
-            style={{ fontSize: getMethodFontSizes(method.sanityId, false) }}>
+            style={{ fontSize: getMethodFontSizes(id, false) }}>
             {method.title}
           </div>
         </OutboundLink>
