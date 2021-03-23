@@ -97,7 +97,7 @@ const Work = () => {
           data-sal-duration='1000'
           data-sal-delay='200'>
           <h3 className='mt-2'>{data.title}</h3>
-          <div className='caption-body'>
+          <div className='sanity-body'>
             <BlockContent blocks={data._rawBody}></BlockContent>
             <div className='d-flex flex-column h-100 justify-content-center my-3 my-sm-5'>
               {data.virtualVisible ? (

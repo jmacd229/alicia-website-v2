@@ -1,34 +1,29 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { useStaticQuery, graphql } from "gatsby"
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 
-import Header from "./header/header"
-import Footer from "./footer/footer"
-import { Chat } from "./chat/chat"
+import Header from './header/header';
+import Footer from './footer/footer';
+import { Chat } from './chat/chat';
 
-const Layout = ({sections, children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+const Layout = ({ sections, children }) => {
+  const [isProd, setProd] = useState(false);
+
+  useEffect(() => setProd(window.location.href.includes('dralicia')), []);
+
   return (
     <>
-      <Header sections={sections}/>
-        <main>{children}
-        {process.env.NODE_ENV === "production" ? <Chat/> : null}
-        </main>
-        <Footer></Footer>
+      <Header sections={sections} />
+      <main>
+        {children}
+        {isProd ? <Chat /> : null}
+      </main>
+      <Footer></Footer>
     </>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;

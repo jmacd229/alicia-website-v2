@@ -40,7 +40,7 @@ $picture-offset: 70px;
                 background-size: 100% 6px;
                 background-position: 0 100%;
             }
-            .caption-body {
+            .sanity-body {
                 color: $secondary-color;
                 display: flex;
                 font-weight: 200;
@@ -73,7 +73,6 @@ $picture-offset: 70px;
                         border-bottom-right-radius: 16px;
                         font-weight: 400;
                         font-size: 16px;
-                        min-width: 88px;
                         padding: 4px;
                         display: flex;
                         flex-direction: column;
@@ -172,7 +171,7 @@ $picture-offset: 70px;
         .main .caption h3 {
             font-size: 48px;
         }
-        .main .caption .caption-body {
+        .main .caption .sanity-body {
             padding: 32px;
             flex-direction: column;
         }

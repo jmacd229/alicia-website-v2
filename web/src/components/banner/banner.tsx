@@ -45,7 +45,7 @@ const BannerContainer = () => {
           <div data-sal='fade' data-sal-duration='1000'>
             <h2>{data.title}</h2>
           </div>
-          <div className='body' data-sal='fade' data-sal-duration='1000'>
+          <div className='sanity-body' data-sal='fade' data-sal-duration='1000'>
             <BlockContent blocks={data._rawBody}></BlockContent>
           </div>
         </div>
