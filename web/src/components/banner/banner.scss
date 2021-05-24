@@ -64,16 +64,15 @@ $bullet-font-size: 16px;
                 font-weight: 200;
                 padding: 0 48px;
                 p {
-                    text-align: justify;
+                    text-align: left;
                 }
                 ul {
+                    display: grid;
+                    grid-template-columns: auto auto;
                     font-weight: 400;
                     font-size: $bullet-font-size;
                     list-style-type: none;
-                    columns: 2;
                     margin: 0 16px;
-                    -webkit-columns: 2;
-                    -moz-columns: 2;
                     li {
                         display: flex;
                         flex-direction: row-reverse;
@@ -122,9 +121,7 @@ $bullet-font-size: 16px;
                         text-align: center;
                     }
                     ul {
-                        columns: 1;
-                        -webkit-columns: 1;
-                        -moz-columns: 1;
+                        grid-template-columns: auto;
                     }
                 }
             }
