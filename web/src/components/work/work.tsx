@@ -3,10 +3,10 @@ import React, { createRef, useEffect } from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import virtual from '../../animations/virtual.json';
 import lottie, { AnimationItem } from 'lottie-web';
-import Img from 'gatsby-image';
 import './work.scss';
 import { OutboundLink } from 'gatsby-plugin-google-gtag';
 import { Weekdays } from '../../models/weekdays.enum';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const Work = () => {
   const data = useStaticQuery(graphql`
@@ -29,9 +29,7 @@ const Work = () => {
         }
         image {
           asset {
-            fluid(maxHeight: 500) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(height: 500, placeholder: BLURRED)
           }
         }
       }
@@ -74,12 +72,12 @@ const Work = () => {
   function getDays(days: Array<string>) {
     return days.map((day, i) => {
       return (
-        <div className="text-center" key={i}>
+        <div className='text-center' key={i}>
           {i !== 0 && i === days.length - 1 ? (
             <div className='and'>&</div>
           ) : null}
           <div key={day}>{Weekdays[day]}s</div>
-          </div>
+        </div>
       );
     });
   }
@@ -142,7 +140,10 @@ const Work = () => {
           data-sal-duration='500'
           data-sal-delay='100'>
           <div className='img-bg'></div>
-          <Img fluid={data.image.asset.fluid} alt='' />
+          <GatsbyImage
+            image={data.image.asset.gatsbyImageData}
+            alt=''
+          />
         </div>
       </div>
     </div>

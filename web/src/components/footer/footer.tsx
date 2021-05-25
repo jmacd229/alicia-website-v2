@@ -30,7 +30,9 @@ const Footer = () => {
     instagram: 'camera_alt',
     facebook: 'facebook',
   };
-  
+
+  const date = packageJson.releaseDate.split('-');
+
   return (
     <footer className='footer flex-md-row'>
       <img
@@ -50,7 +52,12 @@ const Footer = () => {
           .
         </span>
         <span>
-          Last Updated: {new Date(packageJson.releaseDate).toDateString()}
+          Last Updated:{' '}
+          {new Date(
+            parseInt(date[0]),
+            parseInt(date[1]) - 1,
+            parseInt(date[2])
+          ).toDateString()}
         </span>
         <span>V{packageJson.version}</span>
         <button
@@ -58,14 +65,14 @@ const Footer = () => {
           onClick={() =>
             Swal.fire({
               title: 'Privacy Policy',
-              html: privacy.replace(/\n/g,'<br>'),
+              html: privacy.replace(/\n/g, '<br>'),
               icon: 'info',
               width: '64rem',
               customClass: {
-                content: 'privacy-modal',
+                htmlContainer: 'privacy-modal',
                 confirmButton: 'privacy-btn',
-                icon: 'privacy-icon'
-              }
+                icon: 'privacy-icon',
+              },
             })
           }>
           Privacy Policy
@@ -73,7 +80,9 @@ const Footer = () => {
       </div>
       <div className='socials flex-md-column mt-md-0'>
         {contactMethods
-          .filter(method => Object.keys(materialIcons).includes(method.sanityId))
+          .filter(method =>
+            Object.keys(materialIcons).includes(method.sanityId)
+          )
           .map(method => (
             <OutboundLink
               key={method.sanityId}

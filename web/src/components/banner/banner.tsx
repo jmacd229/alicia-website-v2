@@ -1,8 +1,8 @@
+import BlockContent from '@sanity/block-content-to-react';
 import { graphql, useStaticQuery } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import React, { useEffect, useState } from 'react';
 import './banner.scss';
-import BlockContent from '@sanity/block-content-to-react';
-import Img from 'gatsby-image';
 
 const BannerContainer = () => {
   const [yOffset, setYOffset] = useState(0);
@@ -15,9 +15,7 @@ const BannerContainer = () => {
         slides {
           alt
           asset {
-            fluid(maxHeight: 700) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(height: 700, placeholder: BLURRED)
           }
         }
       }
@@ -34,8 +32,8 @@ const BannerContainer = () => {
   return (
     <div className='banner'>
       <div className='img-container' style={{ top: `-${yOffset / 2}px` }}>
-        <Img
-          fluid={data.slides[0].asset.fluid}
+        <GatsbyImage
+          image={data.slides[0].asset.gatsbyImageData}
           alt={data.slides[0].alt}
           style={{ display: 'block', width: '100%' }}
         />

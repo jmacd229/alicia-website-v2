@@ -1,4 +1,5 @@
 module.exports = {
+    flags: { PRESERVE_WEBPACK_CACHE: true },
     siteMetadata: {
         title: `Alicia MacDougall`,
         description: `Naturopathic Medicine for Athletes: Naturopathic Medicine for Athletes: If your health isn’t in check, neither is your performance. Let’s work together to perfect your nutrition, sleep, stress, recovery, hydration, and anything else that you may have going on. Getting the basics down goes a long way, and I am a big believer in preventative health.`,
@@ -18,15 +19,15 @@ module.exports = {
             options: {
                 fonts: {
                     google: [{
-                            family: 'Source Sans Pro',
-                            variants: [200, 300, 400, 700]
-                        },
-                        { family: 'Material Icons' },
-                        { family: 'Dancing Script' },
-                        {
-                            family: 'Roboto Slab',
-                            variants: [100, 200, 400, 900]
-                        }
+                        family: 'Source Sans Pro',
+                        variants: [200, 300, 400, 700]
+                    },
+                    { family: 'Material Icons' },
+                    { family: 'Dancing Script' },
+                    {
+                        family: 'Roboto Slab',
+                        variants: [100, 200, 400, 900]
+                    }
                     ]
                 }
             },
@@ -66,13 +67,7 @@ module.exports = {
                 trackingIds: ["G-ZZM4BTRZPE", "GTM-N84THGP"],
             }
         },
-        {
-            resolve: `gatsby-plugin-purgecss`,
-            options: {
-                printRejected: true,
-                ignore: ['sal.js/'],
-                whitelistPatternsChildren: [/sanity-body/, /gatsby-image-wrapper/]
-            }
-        }
+        `gatsby-plugin-image`,
+        `gatsby-plugin-postcss`,
     ],
 }
