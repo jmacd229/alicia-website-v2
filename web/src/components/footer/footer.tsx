@@ -69,7 +69,7 @@ const Footer = () => {
               icon: 'info',
               width: '64rem',
               customClass: {
-                content: 'privacy-modal',
+                htmlContainer: 'privacy-modal',
                 confirmButton: 'privacy-btn',
                 icon: 'privacy-icon',
               },

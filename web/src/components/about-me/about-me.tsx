@@ -1,8 +1,8 @@
-import { graphql, useStaticQuery } from 'gatsby';
-import React from 'react';
 import BlockContent from '@sanity/block-content-to-react';
+import { graphql, useStaticQuery } from 'gatsby';
+import { GatsbyImage } from 'gatsby-plugin-image';
+import React from 'react';
 import './about-me.scss';
-import Img from 'gatsby-image';
 
 const AboutMe = () => {
   const data = useStaticQuery(graphql`
@@ -16,9 +16,7 @@ const AboutMe = () => {
         image {
           alt
           asset {
-            fluid(maxWidth: 350) {
-              ...GatsbySanityImageFluid
-            }
+            gatsbyImageData(width: 350, placeholder: BLURRED)
           }
         }
       }
@@ -44,10 +42,10 @@ const AboutMe = () => {
                 blocks={data._rawBody}></BlockContent>
             </div>
             <div data-sal='zoom-in' data-sal-duration='500'>
-              <Img
-                className='profile'
-                fluid={data.image.asset.fluid}
+              <GatsbyImage
+                image={data.image.asset.gatsbyImageData}
                 alt={data.image.alt}
+                className='profile'
               />
             </div>
           </div>

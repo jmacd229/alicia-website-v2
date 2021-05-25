@@ -1,5 +1,7 @@
+@use 'sass:math';
 @import '../../styles/variables';
 @import '../../styles/mixins';
+
 // Header variables
 $header-btn-font-size: 1.5rem;
 $header-btn-y-padding: 6px;
@@ -12,7 +14,7 @@ $header-btn-y-padding: 6px;
         flex-direction: column;
         align-items: center;
         background-color: $main-color;
-        padding: (($header-btn-font-size/1rem)*16px) + 2 * $header-btn-y-padding 8px 0 8px;
+        padding: (math.div($header-btn-font-size, 1rem)*16px) + 2 * $header-btn-y-padding 8px 0 8px;
         width: 100%;
         .nav-wrapper {
             @include shadow;
@@ -101,7 +103,7 @@ $header-btn-y-padding: 6px;
     $header-btn-y-padding: 6px;
     .header {
         header {
-            padding: (($header-btn-font-size/1rem)*16px) + 2 * $header-btn-y-padding 8px 8px 8px;
+            padding: (math.div($header-btn-font-size, 1rem)*16px) + 2 * $header-btn-y-padding 8px 8px 8px;
             .nav-wrapper {
                 .nav-menu {
                     width: 100%;
