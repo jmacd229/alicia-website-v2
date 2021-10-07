@@ -5,7 +5,6 @@ import lottie, { AnimationItem } from 'lottie-web';
 import email from '../../animations/email.json';
 import phone from '../../animations/phone.json';
 import location1 from '../../animations/location-1.json';
-import location2 from '../../animations/location-2.json';
 import facebook from '../../animations/facebook.json';
 import instagram from '../../animations/instagram.json';
 import { OutboundLink } from 'gatsby-plugin-google-gtag';
@@ -14,16 +13,19 @@ import 'rc-tooltip/assets/bootstrap.css';
 import { Weekdays } from '../../models/weekdays.enum';
 
 class Animation {
-  constructor(data) {
+  constructor(data, name) {
     this.data = data;
     this.container = createRef<HTMLDivElement>();
+    this.name = name;
   }
   container: RefObject<HTMLDivElement>;
   data: any;
+  name: string;
   item = null;
 }
 
 interface Method {
+  id: string;
   sanityId: string;
   label: string[];
   title: string;
@@ -31,30 +33,29 @@ interface Method {
   visible: boolean;
 }
 
-function getMethodFontSizes(id: string, isLabel = true) {
-  switch (id) {
-    case 'email':
-      if (isLabel) {
-        return 'clamp(1.1rem, 1.8vw, 1.25rem)';
-      }
-      break;
-    case 'location1':
-      if (isLabel) {
-        return 'clamp(1.2rem, 2vw, 1.25rem)';
-      } else {
-        return '32px';
-      }
-    case 'location2':
-      if (isLabel) {
-        return 'clamp(1.2rem, 2vw, 1.25rem)';
-      }
-      break;
-    default:
-      if (isLabel) {
-        return 'clamp(1.2rem, 2vw, 1.5rem)';
-      } else {
-        return '48px';
-      }
+function getMethodFontSizes(text: string, isLabel = true, isLocation = false) {
+  const textLength = text.length;
+  if (isLabel) {
+    let fontSize = 1.25;
+    if (textLength < 15) {
+      fontSize = 2;
+    } else if (textLength < 27) {
+      fontSize = 1.5;
+    }
+    if (isLocation) {
+      fontSize -= 0.5;
+    }
+    return `${fontSize}rem`;
+  } else {
+    let fontSize = 2;
+    if (textLength < 6) {
+      fontSize = 4;
+    } else if (textLength < 20) {
+      fontSize = 3;
+    } else if (textLength < 25) {
+      fontSize = 2.5;
+    }
+    return `${fontSize}rem`;
   }
 }
 
@@ -74,28 +75,32 @@ const Contact = () => {
           visible
         }
         locations {
-          sanityId
+          id
           title
           label
           url
           days
+          daysVirtual
         }
       }
     }
   `).sanityContact;
-  const animations = {
-    email: new Animation(email),
-    phone: new Animation(phone),
-    location1: new Animation(location1),
-    location2: new Animation(location2),
-    facebook: new Animation(facebook),
-    instagram: new Animation(instagram),
-  };
 
-  function createMethod(method: Method) {
-    const id = method.sanityId ? method.sanityId : 'location1';
+  const animations = {
+    email: new Animation(email, 'email'),
+    phone: new Animation(phone, 'phone'),
+    facebook: new Animation(facebook, 'facebook'),
+    instagram: new Animation(instagram, 'instagram'),
+  };
+  data.locations.forEach(
+    location =>
+      (animations[location.id] = new Animation(location1, location.id))
+  );
+
+  function createMethod(method: Method, isLocation = false) {
+    const id = isLocation ? method.id : method.sanityId;
     return (
-      <div data-sal='zoom-in' data-sal-duration='1000' key={id}>
+      <div data-sal='zoom-in' data-sal-duration='1000' key={method.title}>
         <OutboundLink
           onMouseEnter={() => playAnimation(id)}
           onFocus={() => playAnimation(id)}
@@ -103,14 +108,12 @@ const Contact = () => {
           target='_blank'
           rel='noreferrer'>
           <div>
-            <div
-              className='icon'
-              ref={animations[id]?.container}></div>
+            <div className='icon' ref={animations[id]?.container}></div>
             {getLabel(method)}
           </div>
           <div
             className='title'
-            style={{ fontSize: getMethodFontSizes(id, false) }}>
+            style={{ fontSize: getMethodFontSizes(method.title, false) }}>
             {method.title}
           </div>
         </OutboundLink>
@@ -121,21 +124,25 @@ const Contact = () => {
 
   function getHours(method) {
     if (method.days) {
+      const days = method.days
+        .map(day => ({ text: day, virtual: false }))
+        .concat(method.daysVirtual.map(day => ({ text: day, virtual: true })));
       return (
         <div
           className='hours'
           role='list'
           aria-label={`Days available at ${method.title}`}>
           {Object.entries(Weekdays).map(([key, value]) => {
-            if (method.days.includes(key)) {
+            const day = days.find(day => day.text === key);
+            if (day) {
               return (
-                <Tooltip key={key} overlay={value}>
+                <Tooltip key={key} overlay={value + (day.virtual ? " Virtual" : '')}>
                   <div
                     tabIndex={0}
                     role='listitem'
                     aria-disabled={false}
-                    className='day'
-                    aria-label={value}>
+                    className={'day' + (day.virtual ? " virtually" : '')}
+                    aria-label={value + (day.virtual ? " Virtual" : '')}>
                     {value.charAt(0)}
                   </div>
                 </Tooltip>
@@ -161,13 +168,15 @@ const Contact = () => {
   function getLabel(method) {
     if (method.label instanceof Array) {
       return method.label.map((label, i) => (
-        <span key={i} style={{ fontSize: getMethodFontSizes(method.sanityId) }}>
+        <span
+          key={i}
+          style={{ fontSize: getMethodFontSizes(method.label, true, true) }}>
           {label}
         </span>
       ));
     } else {
       return (
-        <span style={{ fontSize: getMethodFontSizes(method.sanityId) }}>
+        <span style={{ fontSize: getMethodFontSizes(method.label, true) }}>
           {method.label}
         </span>
       );
@@ -182,10 +191,15 @@ const Contact = () => {
         loop: false,
         autoplay: false,
         animationData: animation.data,
+        name: animation.name,
       });
       animation.item.setDirection(1);
       animation.item.setSpeed(0.75);
     });
+    return () =>
+      Object.values(animations).forEach(animation =>
+        lottie.destroy(animation.name)
+      );
   }, []);
 
   function playAnimation(id) {
@@ -212,7 +226,7 @@ const Contact = () => {
               .map(method => createMethod(method))}
           </div>
           <div className='methods locations'>
-            {data.locations.map(location => createMethod(location))}
+            {data.locations.map(location => createMethod(location, true))}
           </div>
         </div>
       </div>

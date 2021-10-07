@@ -2,8 +2,8 @@
     "name": "alicia-website",
     "private": true,
     "description": "A personal website for Alicia MacDougall",
-    "version": "1.2.2",
-    "releaseDate": "2021-05-24",
+    "version": "1.2.3",
+    "releaseDate": "2021-10-06",
     "author": "Jesse MacDougall",
     "dependencies": {
         "@sanity/block-content-to-react": "^3.0.0",

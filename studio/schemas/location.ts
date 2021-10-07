@@ -1,3 +1,13 @@
+const DAYS_LIST = [
+  {title: 'Monday', value: 'mon'},
+  {title: 'Tuesday', value: 'tue'},
+  {title: 'Wednesday', value: 'wed'},
+  {title: 'Thursday', value: 'thu'},
+  {title: 'Friday', value: 'fri'},
+  {title: 'Saturday', value: 'sat'},
+  {title: 'Sunday', value: 'sun'},
+];
+
 export default {
     name: "location",
     title: "Location",
@@ -30,21 +40,21 @@ export default {
           type: "url",
         },
         {
-          title: 'Days at Location',
+          title: 'Days in-person',
           name: 'days',
           type: 'array',
           of: [{type: 'string'}],
-          validation: (Rule) => Rule.min(1),
           options: {
-            list: [
-              {title: 'Monday', value: 'mon'},
-              {title: 'Tuesday', value: 'tue'},
-              {title: 'Wednesday', value: 'wed'},
-              {title: 'Thursday', value: 'thu'},
-              {title: 'Friday', value: 'fri'},
-              {title: 'Saturday', value: 'sat'},
-              {title: 'Sunday', value: 'sun'},
-            ]
+            list: DAYS_LIST
+          }
+        },
+        {
+          title: 'Days virtual',
+          name: 'daysVirtual',
+          type: 'array',
+          of: [{type: 'string'}],
+          options: {
+            list: DAYS_LIST
           }
         }
       ],

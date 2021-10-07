@@ -7,3 +7,13 @@ export enum Weekdays {
   sat = 'Saturday',
   sun = 'Sunday',
 }
+
+export enum ShortWeekdays {
+  mon = 'Mon',
+  tue = 'Tues',
+  wed = 'Wed',
+  thu = 'Thurs',
+  fri = 'Fri',
+  sat = 'Sat',
+  sun = 'Sun',
+}

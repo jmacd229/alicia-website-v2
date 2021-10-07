@@ -5,7 +5,7 @@ import virtual from '../../animations/virtual.json';
 import lottie, { AnimationItem } from 'lottie-web';
 import './work.scss';
 import { OutboundLink } from 'gatsby-plugin-google-gtag';
-import { Weekdays } from '../../models/weekdays.enum';
+import { Weekdays, ShortWeekdays } from '../../models/weekdays.enum';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
 const Work = () => {
@@ -16,9 +16,10 @@ const Work = () => {
         _rawBody
         bookLink {
           location {
-            sanityId
+            id
             title
             days
+            daysVirtual
           }
           url
         }
@@ -35,17 +36,19 @@ const Work = () => {
       }
     }
   `).sanityWork;
-  const animations = {
-    virtual: {
+  const animations = [
+    {
+      name: 'virtual',
       item: null,
       container: createRef<HTMLDivElement>(),
       data: virtual,
     },
-  };
+  ];
 
   useEffect(() => {
-    Object.values(animations).forEach(animation => {
+    animations.forEach(animation => {
       animation.item = lottie.loadAnimation({
+        name: animation.name,
         container: animation.container.current,
         renderer: 'svg',
         loop: false,
@@ -55,6 +58,8 @@ const Work = () => {
       animation.item.setDirection(-1);
       animation.item.setSpeed(0.75);
     });
+    return () =>
+      animations.forEach(animation => lottie.destroy(animation.name));
   }, []);
 
   function playVirtualAnimation() {
@@ -69,14 +74,20 @@ const Work = () => {
     }
   }
 
-  function getDays(days: Array<string>) {
+  function getDays(location) {
+    const days = location.days
+      .map(day => ({ text: day, virtual: false }))
+      .concat(location.daysVirtual.map(day => ({ text: day, virtual: true })));
     return days.map((day, i) => {
       return (
         <div className='text-center' key={i}>
           {i !== 0 && i === days.length - 1 ? (
             <div className='and'>&</div>
           ) : null}
-          <div key={day}>{Weekdays[day]}s</div>
+          <div className="text-nowrap">
+          {day.virtual ? ShortWeekdays[day.text] : Weekdays[day.text] + 's'}
+          {day.virtual && <span className='virtual'> virtually</span>}
+          </div>
         </div>
       );
     });
@@ -109,27 +120,25 @@ const Work = () => {
                   target='_blank'
                   rel='noreferrer'>
                   {data.virtualLink.text}
-                  <div
-                    className='ml-2'
-                    ref={animations.virtual.container}></div>
+                  <div className='ml-2' ref={animations[0].container}></div>
                 </OutboundLink>
               ) : null}
-              {data.bookLink.map(booking => {
-                return (
-                  <div
-                    className='in-person-booking'
-                    key={booking.location.sanityId}>
-                    <OutboundLink
-                      className='booking'
-                      href={booking.url}
-                      target='_blank'
-                      rel='noreferrer'>
-                      {booking.location.title}
-                    </OutboundLink>
-                    <div className='days'>{getDays(booking.location.days)}</div>
-                  </div>
-                );
-              })}
+              {data.bookLink.map(booking => (
+                <div
+                  className='in-person-booking'
+                  key={booking.location.id}>
+                  <OutboundLink
+                    className='booking'
+                    href={booking.url}
+                    target='_blank'
+                    rel='noreferrer'>
+                    {booking.location.title}
+                  </OutboundLink>
+                  {booking.location.days && (
+                    <div className='days'>{getDays(booking.location)}</div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
           <div className='line'></div>
@@ -140,10 +149,7 @@ const Work = () => {
           data-sal-duration='500'
           data-sal-delay='100'>
           <div className='img-bg'></div>
-          <GatsbyImage
-            image={data.image.asset.gatsbyImageData}
-            alt=''
-          />
+          <GatsbyImage image={data.image.asset.gatsbyImageData} alt='' />
         </div>
       </div>
     </div>

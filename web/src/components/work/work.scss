@@ -2,178 +2,195 @@
 @import '../../styles/mixins';
 $picture-offset: 70px;
 .work {
-    margin-bottom: $picture-offset * -1;
-    .main {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        background-color: white;
-        .left {
-            @include shadow;
-            z-index: 1;
-            background-color: $main-color;
-            position: relative;
-            width: 100%;
-            height: 350px;
-            align-self: flex-end;
-        }
-        .caption {
-            @include shadow;
-            flex-grow: 1;
-            z-index: 1;
-            position: absolute;
-            left: 5vw;
-            background-color: $accent-2-light;
-            width: 800px;
-            height: 400px;
-            margin-bottom: $picture-offset;
-            h3 {
-                position: absolute;
-                top: -60px;
-                left: -36px;
-                font-family: $cursive-family;
-                color: $secondary-color;
-                font-size: 80px;
-                transform: rotate(-6deg);
-                background-image: linear-gradient( 120deg, $accent-1 0%, transparent 100%);
-                background-repeat: no-repeat;
-                background-size: 100% 6px;
-                background-position: 0 100%;
-            }
-            .sanity-body {
-                color: $secondary-color;
-                display: flex;
-                font-weight: 200;
-                font-size: 20px;
-                padding: 0 64px;
-                height: 100%;
-                align-items: center;
-                >p {
-                    max-width: 350px;
-                    padding-right: 32px;
-                }
-                .in-person-booking {
-                    @include shadow;
-                    border-radius: 16px;
-                    display: flex;
-                    margin-top: 16px;
-                    .booking {
-                        @include wipebtnRight;
-                        border: 4px solid white;
-                        display: flex;
-                        border-top-left-radius: 16px;
-                        border-bottom-left-radius: 16px;
-                        box-shadow: none;
-                        flex-grow: 2;
-                        justify-content: center;
-                    }
-                    .days {
-                        font-family: $impact-family;
-                        border-top-right-radius: 16px;
-                        border-bottom-right-radius: 16px;
-                        font-weight: 400;
-                        font-size: 16px;
-                        padding: 4px;
-                        display: flex;
-                        flex-direction: column;
-                        align-items: center;
-                        justify-content: center;
-                        background-color: $color-white;
-                        .and {
-                            line-height: 12px;
-                        }
-                    }
-                }
-                .booking {
-                    @include shadow;
-                    @include wipebtnLeft;
-                    border: 4px solid $color-white;
-                    text-align: center;
-                    white-space: normal !important;
-                    justify-content: space-evenly;
-                    display: flex;
-                    align-items: center;
-                    border-radius: 16px;
-                    font-weight: 500;
-                    text-shadow: -1px -1px 0 $accent-1-extra-dark, 1px -1px 0 $accent-1-extra-dark, -1px 1px 0 $accent-1-extra-dark, 1px 1px 0 $accent-1-extra-dark;
-                    white-space: normal;
-                    background-color: $accent-1 !important;
-                    padding: 8px 16px;
-                    font-size: 22px;
-                    >div {
-                        display: inline-block;
-                        width: 50px;
-                    }
-                }
-            }
-        }
-        .img-container {
-            @include shadow;
-            width: 100%;
-            height: 100%;
-            max-height: 500px;
-            position: relative;
-            margin-bottom: $picture-offset;
-            .img-bg {
-                background-color: $accent-1;
-                top: 0;
-                height: 100%;
-                width: 100%;
-                position: absolute;
-            }
-            >.gatsby-image-wrapper {
-                height: 100%;
-                max-height: 500px;
-                opacity: 0.7;
-            }
-        }
+  margin-bottom: $picture-offset * -1;
+  .main {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: white;
+    .left {
+      @include shadow;
+      z-index: 1;
+      background-color: $main-color;
+      position: relative;
+      width: 100%;
+      height: 350px;
+      align-self: flex-end;
     }
+    .caption {
+      @include shadow;
+      flex-grow: 1;
+      z-index: 1;
+      position: absolute;
+      left: 5vw;
+      background-color: $accent-2-light;
+      width: 800px;
+      height: 400px;
+      margin-bottom: $picture-offset;
+      h3 {
+        position: absolute;
+        top: -60px;
+        left: -36px;
+        font-family: $cursive-family;
+        color: $secondary-color;
+        font-size: 80px;
+        transform: rotate(-6deg);
+        background-image: linear-gradient(
+          120deg,
+          $accent-1 0%,
+          transparent 100%
+        );
+        background-repeat: no-repeat;
+        background-size: 100% 6px;
+        background-position: 0 100%;
+      }
+      .sanity-body {
+        color: $secondary-color;
+        display: flex;
+        font-weight: 200;
+        font-size: 20px;
+        padding: 0 64px;
+        height: 100%;
+        align-items: center;
+        > p {
+          max-width: 350px;
+          padding-right: 32px;
+        }
+        .in-person-booking {
+          @include shadow;
+          border-radius: 16px;
+          display: flex;
+          margin-top: 16px;
+          .booking {
+            @include wipebtnRight;
+            line-height: normal;
+            border: 4px solid white;
+            display: flex;
+            border-top-left-radius: 16px;
+            border-bottom-left-radius: 16px;
+            box-shadow: none;
+            flex-grow: 2;
+            justify-content: center;
+          }
+          .days {
+            font-family: $impact-family;
+            line-height: normal;
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+            font-weight: 400;
+            font-size: 14px;
+            padding: 4px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: $color-white;
+            .and {
+              line-height: 12px;
+            }
+          }
+        }
+        .booking {
+          @include shadow;
+          @include wipebtnLeft;
+          border: 4px solid $color-white;
+          text-align: center;
+          white-space: normal !important;
+          justify-content: space-evenly;
+          display: flex;
+          align-items: center;
+          border-radius: 16px;
+          font-weight: 500;
+          text-shadow: -1px -1px 0 $accent-1-extra-dark,
+            1px -1px 0 $accent-1-extra-dark, -1px 1px 0 $accent-1-extra-dark,
+            1px 1px 0 $accent-1-extra-dark;
+          white-space: normal;
+          background-color: $accent-1 !important;
+          padding: 8px 16px;
+          font-size: 22px;
+          > div {
+            display: inline-block;
+            width: 50px;
+          }
+        }
+      }
+    }
+    .img-container {
+      @include shadow;
+      width: 100%;
+      height: 100%;
+      max-height: 500px;
+      position: relative;
+      margin-bottom: $picture-offset;
+      .img-bg {
+        background-color: $accent-1;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+      }
+      > .gatsby-image-wrapper {
+        height: 100%;
+        max-height: 500px;
+        opacity: 0.7;
+      }
+    }
+  }
 }
 
 @media (max-width: $medium-size) {
-    .work {
+  .work {
+    margin-bottom: 0;
+    .main {
+      flex-direction: column-reverse;
+      height: auto;
+      .left {
+        height: 50px;
+      }
+      .caption {
         margin-bottom: 0;
-        .main {
-            flex-direction: column-reverse;
-            height: auto;
-            .left {
-                height: 50px;
-            }
-            .caption {
-                margin-bottom: 0;
-                position: relative;
-                left: auto;
-                width: 100%;
-                height: auto;
-                h3 {
-                    position: relative;
-                    left: 16px;
-                    top: 0;
-                    transform: none;
-                    text-align: center;
-                    background-image: linear-gradient( 90deg, transparent 0%, $accent-1 50%, transparent 100%);
-                }
-            }
-            .img-container {
-                margin-bottom: 0;
-                >.gatsby-image-wrapper {
-                    width: 100%;
-                    height: auto;
-                    max-height: 200px;
-                }
-            }
+        position: relative;
+        left: auto;
+        width: 100%;
+        height: auto;
+        h3 {
+          position: relative;
+          left: 16px;
+          top: 0;
+          transform: none;
+          text-align: center;
+          background-image: linear-gradient(
+            90deg,
+            transparent 0%,
+            $accent-1 50%,
+            transparent 100%
+          );
         }
+      }
+      .img-container {
+        margin-bottom: 0;
+        > .gatsby-image-wrapper {
+          width: 100%;
+          height: auto;
+          max-height: 200px;
+        }
+      }
     }
+  }
 }
 
 @media (max-width: $mobile-size) {
-    .work {
-        .main .caption h3 {
-            font-size: 48px;
-        }
-        .main .caption .sanity-body {
-            padding: 32px;
-            flex-direction: column;
-        }
+  .work {
+    .main .caption h3 {
+      font-size: 48px;
     }
+    .main .caption .sanity-body {
+      padding: 32px;
+      flex-direction: column;
+    }
+  }
+}
+
+.virtual {
+  font-family: $cursive-family;
 }
