@@ -7,8 +7,8 @@
     "author": "Jesse MacDougall",
     "dependencies": {
         "@sanity/block-content-to-react": "^3.0.0",
-        "bootstrap": "^5.0.1",
-        "gatsby": "^3.5.1",
+        "bootstrap": "^5.2.2",
+        "gatsby": "^4.24.4",
         "gatsby-image": "^3.5.0",
         "gatsby-plugin-google-gtag": "^3.5.0",
         "gatsby-plugin-image": "^1.5.0",
@@ -33,11 +33,11 @@
         "react-bootstrap": "^1.6.0",
         "react-dom": "^17.0.2",
         "react-helmet": "^6.1.0",
-        "sweetalert2": "^11.0.11"
+        "sweetalert2": "^11.5.2"
     },
     "devDependencies": {
-        "gatsby-plugin-root-import": "^2.0.6",
-        "prettier": "2.3.0"
+        "gatsby-plugin-root-import": "^2.0.8",
+        "prettier": "2.7.1"
     },
     "scripts": {
         "build": "sed -i 's|\"releaseDate\": \".*\"|\"releaseDate\": \"'$(date +%Y-%m-%d)'\"|g' package.json && gatsby build",
@@ -45,8 +45,7 @@
         "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
         "start": "npm run develop",
         "serve": "gatsby serve",
-        "clean": "gatsby clean",
-        "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+        "clean": "gatsby clean"
     },
     "repository": {
         "type": "git",

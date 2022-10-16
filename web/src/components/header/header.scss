@@ -1,5 +1,7 @@
+@use "sass:math";
 @import '../../styles/variables';
 @import '../../styles/mixins';
+
 // Header variables
 $header-btn-font-size: 1.5rem;
 $header-btn-y-padding: 6px;
