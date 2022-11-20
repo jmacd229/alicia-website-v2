@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "jsx": "react",
+	"esModuleInterop": true,
+	"resolveJsonModule": true,
+	"baseUrl": "./src",
+    "paths": {
+		"styles/*": ["styles/*"]
+    }
+  },
+	"include": [
+		"src/components",
+		"src/custom.d.ts"
+	],
+}

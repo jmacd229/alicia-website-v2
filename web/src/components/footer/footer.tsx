@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import './footer.scss';
 import packageJson from '../../../package.json';
-import logoImg from '../../images/alicia_macdougall_naturopathic_doctor_logo.svg';
+import logoImg from '../../images/alicia_naturopathic_doctor_logo.svg';
 import { OutboundLink } from 'gatsby-plugin-google-gtag';
 import { graphql, useStaticQuery } from 'gatsby';
 import Swal from 'sweetalert2';

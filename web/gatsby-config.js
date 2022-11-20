@@ -1,3 +1,10 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const path = require('path');
+
+require('dotenv').config({
+    path: `.env.${process.env.NODE_ENV}`,
+});
+
 module.exports = {
     flags: { PRESERVE_WEBPACK_CACHE: true },
     siteMetadata: {
@@ -68,5 +75,12 @@ module.exports = {
             }
         },
         `gatsby-plugin-image`,
+        'gatsby-plugin-styled-components',
+        {
+            resolve: 'gatsby-plugin-root-import',
+            options: {
+            'styles': path.join(__dirname, 'src/styles'),
+            },
+        },
     ],
 }

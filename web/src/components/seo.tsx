@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
-import logoImg from '../images/alicia_macdougall_naturopathic_doctor_logo.svg';
+import logoImg from '../images/alicia_naturopathic_doctor_logo.svg';
 
 function SEO({ description, lang, meta, title }) {
   const { site } = useStaticQuery(

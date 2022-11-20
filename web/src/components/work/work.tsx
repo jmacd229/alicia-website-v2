@@ -5,7 +5,7 @@ import virtual from '../../animations/virtual.json';
 import lottie, { AnimationItem } from 'lottie-web';
 import './work.scss';
 import { OutboundLink } from 'gatsby-plugin-google-gtag';
-import { Weekdays, ShortWeekdays } from '../../models/weekdays.enum';
+import { Weekdays, ShortWeekdays } from '../../types/weekdays.enum';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
 const Work = () => {

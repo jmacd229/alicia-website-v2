@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import Header from './header/header';
+import Header from './header';
 import Footer from './footer/footer';
 import { Chat } from './chat/chat';
+import GlobalStyle from 'styles/GlobalStyle';
 
 const Layout = ({ sections, children }) => {
   const [isProd, setProd] = useState(false);
@@ -12,6 +13,7 @@ const Layout = ({ sections, children }) => {
 
   return (
     <>
+    <GlobalStyle />
       <Header sections={sections} />
       <main>
         {children}

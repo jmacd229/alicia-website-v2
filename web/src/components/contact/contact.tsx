@@ -10,7 +10,7 @@ import instagram from '../../animations/instagram.json';
 import { OutboundLink } from 'gatsby-plugin-google-gtag';
 import Tooltip from 'rc-tooltip';
 import 'rc-tooltip/assets/bootstrap.css';
-import { Weekdays } from '../../models/weekdays.enum';
+import { Weekdays } from '../../types/weekdays.enum';
 
 class Animation {
   constructor(data, name) {
