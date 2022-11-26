@@ -37,4 +37,9 @@ export default createGlobalStyle`
     font-weight: normal;
     font-style: normal;
 }
+
+*:focus {
+  box-shadow: none !important;
+  outline: 3px solid ${colors.tan.c};
+}
 `;

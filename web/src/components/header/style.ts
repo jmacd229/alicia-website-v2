@@ -6,6 +6,7 @@ import media from 'styles/media';
 import { DEFAULT_SHADOW } from 'styles/shadows';
 import zIndex from 'styles/zIndex';
 import { underline } from 'styles/animations/underline';
+import Button from 'components/shared/Button';
 
 const NAV_HEIGHT = { EXPANDED: `125px`, COLLAPSED: '75px' };
 const MOBILE_NAV_HEIGHT = { EXPANDED: `75px`, COLLAPSED: '28px' };
@@ -14,7 +15,9 @@ const COLLAPSE_ANIMATION = 'ease-in-out 150ms';
 const FLIP_ANIMATION = 'ease-in-out 250ms';
 
 const calculateBackToTopPosition = (isMobile?: boolean) =>
-  `calc(calc(-${isMobile ? MOBILE_NAV_HEIGHT.COLLAPSED : NAV_HEIGHT.COLLAPSED} / 2) - ${spacing(isMobile ? 3 : 3.5)})`;
+  `calc(calc(-${
+    isMobile ? MOBILE_NAV_HEIGHT.COLLAPSED : NAV_HEIGHT.COLLAPSED
+  } / 2) - ${spacing(isMobile ? 3 : 2)})`;
 
 export const HeaderContainer = styled.div`
   position: fixed;
@@ -25,7 +28,7 @@ export const HeaderContainer = styled.div`
 export const NavContainer = styled.div<{ collapsed: boolean }>`
   display: grid;
   grid-template-areas: 'logo links';
-  grid-template-columns: ${({ collapsed }) => (collapsed ? '20%' : '30%')} auto;
+  grid-template-columns: ${({ collapsed }) => (collapsed ? '15%' : '35%')} auto;
   grid-template-rows: auto;
   align-items: center;
   padding: ${spacing(0.5)};
@@ -39,7 +42,7 @@ export const NavContainer = styled.div<{ collapsed: boolean }>`
   ${media.medium} {
     padding: ${({ collapsed }) => spacing(collapsed ? 1 : 2)} ${spacing(4)};
     grid-template-areas: 'logo links socials';
-    grid-template-columns: ${({ collapsed }) => (collapsed ? '20%' : '30%')} auto 10%;
+    grid-template-columns: ${({ collapsed }) => (collapsed ? '20%' : '35%')} auto 10%;
   }
 `;
 
@@ -50,10 +53,11 @@ export const NavList = styled.div.attrs({ role: 'navigation' })`
   justify-content: flex-end;
   flex-wrap: wrap;
   position: relative;
+  padding: ${spacing(0.5)} 0;
 
   ${media.medium} {
     flex-wrap: nowrap;
-    /* padding: 0 ${spacing(8)}; */
+    padding: 0;
     gap: 5%;
   }
 `;
@@ -86,7 +90,7 @@ export const BackToTopButton = styled.button.attrs<{ collapsed: boolean }>(
   ${DEFAULT_SHADOW}
   color: ${colors.white};
   background-color: ${colors.jade.b};
-  padding: 0 ${spacing(2)};
+  padding: 0 ${spacing(0.5)};
   z-index: -1;
   span {
     display: none;
@@ -114,6 +118,7 @@ export const BackToTopButton = styled.button.attrs<{ collapsed: boolean }>(
 
   ${media.medium} {
     bottom: ${calculateBackToTopPosition()};
+    padding: 0 ${spacing(2)};
     span {
       display: block;
     }
@@ -123,7 +128,7 @@ export const BackToTopButton = styled.button.attrs<{ collapsed: boolean }>(
     top ${COLLAPSE_ANIMATION}, background-color linear 150ms;
 `;
 
-export const AnimationContainer = styled.div`
+export const ChevronAnimationContainer = styled.div`
   height: 32px;
   transform: rotate(180deg);
 `;
@@ -164,5 +169,37 @@ export const Socials = styled.div<{ collapsed: boolean }>`
 
   ${media.medium} {
     display: flex;
+  }
+`;
+
+export const WorkButton = styled(Button)`
+  display: flex;
+  align-items: center;
+  height: 32px;
+  margin-left: ${spacing(1)};
+  cursor: pointer;
+  overflow: hidden;
+  > span {
+    z-index: 1;
+  }
+  &:hover {
+    svg * {
+      stroke: #71dedf;
+      transition: stroke linear 100ms;
+    }
+  }
+
+  ${media.medium} {
+    height: 48px;
+    margin-left: 0;
+  }
+`;
+
+export const BrainAnimationContainer = styled.div`
+  width: 0;
+  margin-top: 26%;
+  margin-left: -42%;
+  > div {
+    width: 96px;
   }
 `;

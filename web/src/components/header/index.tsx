@@ -2,18 +2,21 @@ import React, { useEffect, useRef, useState } from 'react';
 import logoImg from '../../images/alicia_naturopathic_doctor_logo.svg';
 import lottie, { AnimationItem } from 'lottie-web';
 import chevron from '../../animations/chevron.json';
+import brain from '../../animations/brain.json';
 import {
   NavContainer,
   NavList,
   NavItem,
   BackToTopButton,
-  AnimationContainer,
+  BrainAnimationContainer,
+  ChevronAnimationContainer,
   Title,
   Socials,
   HeaderContainer,
+  WorkButton,
 } from './style';
 import { AnimationConfig } from '../../types/animation';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 
 const SCROLL_HEIGHT_FOR_BACK_TO_TOP = 500;
 
@@ -35,13 +38,9 @@ function scrollToSection(id: string) {
 
 const Header = ({ sections }: { sections: { id: string; link: string }[] }) => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
-  const [animation, setAnimation] = useState<AnimationItem>();
-  const animationConfig: AnimationConfig = {
-    name: 'chevron',
-    container: useRef<HTMLDivElement>({} as HTMLDivElement),
-    data: chevron,
-  };
-
+  const [animations, setAnimations] = useState<{
+    [name: string]: AnimationItem;
+  }>();
   const {
     sanityContact: { methods },
   } = useStaticQuery(graphql`
@@ -57,21 +56,42 @@ const Header = ({ sections }: { sections: { id: string; link: string }[] }) => {
     }
   `);
 
+  const animationConfigs: { [name: string]: AnimationConfig } = {
+    chevron: {
+      name: 'chevron',
+      container: useRef<HTMLDivElement>(),
+      data: chevron,
+    },
+    brain: {
+      name: 'brain',
+      container: useRef<HTMLDivElement>(),
+      data: brain,
+    },
+  };
+
+  const workSection = sections.find(section => section.id === 'work');
+
   useEffect(() => {
-    if (animationConfig.container.current) {
-      setAnimation(
-        lottie.loadAnimation({
-          name: animationConfig.name,
-          container: animationConfig.container.current,
-          renderer: 'svg',
-          loop: false,
-          autoplay: false,
-          animationData: animationConfig.data,
-        })
+    Object.entries(animationConfigs).forEach(([key, animationConfig]) => {
+      if (animationConfig.container.current && !animations?.[key]) {
+        setAnimations(animations => ({
+          ...animations,
+          [key]: lottie.loadAnimation({
+            name: animationConfig.name,
+            container: animationConfig.container.current,
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            animationData: animationConfig.data,
+          }),
+        }));
+      }
+    });
+    return () =>
+      Object.keys(animationConfigs).forEach(animationName =>
+        lottie.destroy(animationName)
       );
-    }
-    return () => lottie.destroy(animationConfig.name);
-  }, [animationConfig.container, animationConfig.name, animationConfig.data]);
+  }, []);
 
   useEffect(() => {
     const onScroll = e =>
@@ -83,10 +103,11 @@ const Header = ({ sections }: { sections: { id: string; link: string }[] }) => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  function playAnimation() {
-    if (animation) {
-      animation.play();
-      animation.resetSegments(true);
+  function playAnimation(name: string) {
+    if (animations[name]?.isPaused) {
+      console.log(animations[name]);
+      animations[name].play();
+      animations[name].resetSegments(true);
     }
   }
 
@@ -97,21 +118,36 @@ const Header = ({ sections }: { sections: { id: string; link: string }[] }) => {
           <img src={logoImg} alt='Dr. Alicia - Naturopathic Doctor' />
         </Title>
         <NavList>
-          {sections?.map((section, index) => (
-            <NavItem
-              key={index}
-              onClick={() => scrollToSection(section.id)}
-              collapsed={isNavCollapsed}>
-              {section.link}
-            </NavItem>
-          ))}
+          {sections
+            ?.filter(section => section.id !== 'work')
+            .map((section, index) => (
+              <NavItem
+                key={index}
+                onClick={() => scrollToSection(section.id)}
+                collapsed={isNavCollapsed}>
+                {section.link}
+              </NavItem>
+            ))}
+          {workSection && (
+            <WorkButton
+              onMouseEnter={() => playAnimation('brain')}
+              onFocus={() => playAnimation('brain')}
+              onClick={() => scrollToSection(workSection.id)}
+              >
+              <span>{workSection.link}</span>
+              <BrainAnimationContainer>
+                <div ref={animationConfigs.brain.container} />
+              </BrainAnimationContainer>
+            </WorkButton>
+          )}
           <BackToTopButton
             collapsed={isNavCollapsed}
-            onMouseEnter={playAnimation}
-            onFocus={playAnimation}
+            onMouseEnter={() => playAnimation('chevron')}
+            onFocus={() => playAnimation('chevron')}
             onClick={scrollToTop}>
-            <AnimationContainer
-              ref={animationConfig.container}/>
+            <ChevronAnimationContainer
+              ref={animationConfigs.chevron.container}
+            />
             <span>Back to top</span>
           </BackToTopButton>
         </NavList>
