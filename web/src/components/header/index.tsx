@@ -14,6 +14,7 @@ import {
   Socials,
   HeaderContainer,
   WorkButton,
+  Anchor,
 } from './style';
 import { AnimationConfig } from '../../types/animation';
 import { useStaticQuery, graphql } from 'gatsby';
@@ -112,7 +113,8 @@ const Header = ({ sections }: { sections: { id: string; link: string }[] }) => {
   }
 
   return (
-    <HeaderContainer>
+    <>
+    <HeaderContainer >
       <NavContainer collapsed={isNavCollapsed}>
         <Title collapsed={isNavCollapsed}>
           <img src={logoImg} alt='Dr. Alicia - Naturopathic Doctor' />
@@ -170,6 +172,8 @@ const Header = ({ sections }: { sections: { id: string; link: string }[] }) => {
         </Socials>
       </NavContainer>
     </HeaderContainer>
+    <Anchor collapsed={isNavCollapsed}/>
+    </>
   );
 };
 

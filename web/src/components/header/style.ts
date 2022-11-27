@@ -19,6 +19,30 @@ const calculateBackToTopPosition = (isMobile?: boolean) =>
     isMobile ? MOBILE_NAV_HEIGHT.COLLAPSED : NAV_HEIGHT.COLLAPSED
   } / 2) - ${spacing(isMobile ? 3 : 2)})`;
 
+const titleHeight = css`
+  height: ${({ collapsed }) =>
+    collapsed ? MOBILE_NAV_HEIGHT.COLLAPSED : MOBILE_NAV_HEIGHT.EXPANDED};
+
+  ${media.medium} {
+    height: ${({ collapsed }) =>
+      collapsed ? NAV_HEIGHT.COLLAPSED : NAV_HEIGHT.EXPANDED};
+  }
+`;
+
+const navPadding = css`
+  padding: ${spacing(0.5)};
+
+  ${media.medium} {
+    padding: ${({ collapsed }) => spacing(collapsed ? 1 : 2)} ${spacing(4)};
+  }
+`;
+
+export const Anchor = styled.div<{ collapsed: boolean }>`
+  background-color: ${colors.blue.c};
+  ${titleHeight}
+  ${navPadding}
+`;
+
 export const HeaderContainer = styled.div`
   position: fixed;
   width: 100%;
@@ -31,8 +55,8 @@ export const NavContainer = styled.div<{ collapsed: boolean }>`
   grid-template-columns: ${({ collapsed }) => (collapsed ? '15%' : '35%')} auto;
   grid-template-rows: auto;
   align-items: center;
-  padding: ${spacing(0.5)};
   top: 0;
+  ${navPadding}
   background-color: ${colors.grey.a};
   border-bottom: 2px solid ${colors.blue.b};
   height: ${({ collapsed }) => (collapsed ? '110%' : '100%')};
@@ -40,7 +64,6 @@ export const NavContainer = styled.div<{ collapsed: boolean }>`
   transition: height ${COLLAPSE_ANIMATION}, padding ${COLLAPSE_ANIMATION};
 
   ${media.medium} {
-    padding: ${({ collapsed }) => spacing(collapsed ? 1 : 2)} ${spacing(4)};
     grid-template-areas: 'logo links socials';
     grid-template-columns: ${({ collapsed }) => (collapsed ? '20%' : '35%')} auto 10%;
   }
@@ -138,18 +161,12 @@ export const ChevronAnimationContainer = styled.div`
 export const Title = styled.h1<{ collapsed: boolean }>`
   grid-area: logo;
   overflow: hidden;
-  height: ${({ collapsed }) =>
-    collapsed ? MOBILE_NAV_HEIGHT.COLLAPSED : MOBILE_NAV_HEIGHT.EXPANDED};
-  transition: height ${COLLAPSE_ANIMATION};
+  ${titleHeight}
   > img {
     height: ${({ collapsed }) => (collapsed ? '110%' : '100%')};
     transition: height ${COLLAPSE_ANIMATION};
   }
 
-  ${media.medium} {
-    height: ${({ collapsed }) =>
-      collapsed ? NAV_HEIGHT.COLLAPSED : NAV_HEIGHT.EXPANDED};
-  }
 `;
 
 export const Socials = styled.div<{ collapsed: boolean }>`
