@@ -45,7 +45,7 @@ module.exports = {
                 background_color: `#ecf0f1`,
                 theme_color: `#55b8bb`,
                 display: `minimal-ui`,
-                icon: `src/images/alicia_logo_icon.svg`,
+                icon: `src/images/alicia_logo_icon.png`,
             },
         },
         {
@@ -68,6 +68,5 @@ module.exports = {
             }
         },
         `gatsby-plugin-image`,
-        `gatsby-plugin-postcss`,
     ],
 }
