@@ -9,7 +9,7 @@ const buttonStyle = css`
   border: 2px solid ${colors.white};
   color: ${colors.black};
   background-color: ${colors.blue.a};
-  padding: ${spacing(0.5)} ${spacing(1)};
+  padding: 0 ${spacing(0.5)};
   border-radius: ${spacing(4)};
   ${fontStyle.IMPACT};
   font-size: ${fontSize('sm')};

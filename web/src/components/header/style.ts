@@ -64,9 +64,9 @@ export const NavList = styled.div.attrs({ role: 'navigation' })`
 
 export const NavItem = styled.button<{ collapsed: boolean }>`
   color: ${colors.black};
-  font-size: ${({ collapsed }) => fontSize(collapsed ? 'sm' : 'regular')};
+  font-size: ${({ collapsed }) => fontSize(collapsed ? 'xs' : 'sm')};
   ${fontStyle.IMPACT_THIN};
-  padding: ${spacing(0.5)} ${spacing(1)};
+  padding: 0 ${spacing(0.5)};
   ${underline('jade-a', `font-size ${COLLAPSE_ANIMATION}`)}
   margin: 0;
 
@@ -75,6 +75,7 @@ export const NavItem = styled.button<{ collapsed: boolean }>`
   }
 
   ${media.medium} {
+    padding: ${spacing(0.5)} ${spacing(1)};
     font-size: ${({ collapsed }) => fontSize(collapsed ? 'regular' : 'lg')};
   }
 `;
