@@ -130,6 +130,7 @@ export const BackToTopButton = styled.button.attrs<{ collapsed: boolean }>(
 
 export const ChevronAnimationContainer = styled.div`
   height: 32px;
+  width: 32px;
   transform: rotate(180deg);
 `;
 
@@ -179,6 +180,7 @@ export const WorkButton = styled(Button)`
   margin-left: ${spacing(1)};
   cursor: pointer;
   overflow: hidden;
+  transform: translateZ(0); // Fix for Safari
   > span {
     z-index: 1;
   }

@@ -7,6 +7,7 @@ import spacing from 'styles/spacing';
 
 const buttonStyle = css`
   border: 2px solid ${colors.white};
+  color: ${colors.black};
   background-color: ${colors.blue.a};
   padding: ${spacing(0.5)} ${spacing(1)};
   border-radius: ${spacing(4)};
