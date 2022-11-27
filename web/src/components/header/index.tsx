@@ -44,7 +44,7 @@ const Header = ({ sections }: { sections: { id: string; link: string }[] }) => {
   const {
     sanityContact: { methods },
   } = useStaticQuery(graphql`
-    query footerQuery {
+    query headerQuery {
       sanityContact {
         methods {
           sanityId
