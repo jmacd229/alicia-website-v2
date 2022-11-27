@@ -1,7 +1,8 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ReactNode } from 'react';
 import { StyledButton, StyledLink } from './style';
 
 const BaseButton: FC<{
+  children: ReactNode;
   href?: string;
   onMouseEnter?: () => void;
   onFocus?: () => void;
