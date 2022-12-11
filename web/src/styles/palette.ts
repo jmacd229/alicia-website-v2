@@ -25,6 +25,10 @@ export const rgbColors: Partial<Record<ThemePalette, Partial<Record<Shade, strin
   blue: {
     c: '0, 131, 138'
   },
+  tan: {
+    b: '244, 226, 193',
+    c: '227, 181, 98',
+  },
 };
 
 const commonPalette = { white: '#FFFFFF', black: '#000000' };

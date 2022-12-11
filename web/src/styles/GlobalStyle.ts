@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { fontSize } from './font';
+import { fontSize, fontStyle } from './font';
 import colors from './palette';
 
 export default createGlobalStyle`
@@ -41,5 +41,14 @@ export default createGlobalStyle`
 *:focus {
   box-shadow: none !important;
   outline: 3px solid ${colors.tan.c};
+}
+
+h2 {
+  ${fontStyle.IMPACT_THIN};
+  letter-spacing: unset;
+  word-spacing: unset;
+  text-transform: none;
+  color: ${colors.black};
+  font-weight: 400;
 }
 `;

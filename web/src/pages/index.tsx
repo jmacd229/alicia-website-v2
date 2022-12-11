@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import '../styles/global.scss';
-import BannerContainer from '../components/banner/banner';
+import Banner from '../components/banner';
 import AboutMe from '../components/about-me/about-me';
 import Work from '../components/work/work';
 import Resources from '../components/resources/resources';
@@ -63,7 +63,7 @@ const IndexPage = () => {
 
   return (<Layout sections = {sections?.filter(section => section.visible)}>
     <SEO title='Home' />
-    <BannerContainer />
+    <Banner />
     {sections?.map((section, i) => {
       if(section.visible){
         return section.element;

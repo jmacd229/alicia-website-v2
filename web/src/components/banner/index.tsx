@@ -1,11 +1,17 @@
 import BlockContent from '@sanity/block-content-to-react';
 import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import React, { useEffect, useState } from 'react';
-import './banner.scss';
+import React from 'react';
+import {
+  Banner,
+  ImageContainer,
+  TextBox,
+  TextBoxContainer,
+  TextBoxContent,
+  Title,
+} from './style';
 
 const BannerContainer = () => {
-  const [yOffset, setYOffset] = useState(0);
   const data = useStaticQuery(graphql`
     query MyQuery {
       sanityCarousel {
@@ -22,33 +28,24 @@ const BannerContainer = () => {
     }
   `).sanityCarousel;
 
-  useEffect(() => {
-    const onScroll = e => setYOffset(e.target.documentElement.scrollTop);
-    window.addEventListener('scroll', onScroll);
-
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [yOffset]);
-
   return (
-    <div className='banner'>
-      <div className='img-container' style={{ top: `-${yOffset / 2}px` }}>
+    <Banner>
+      <ImageContainer data-sal='fade' data-sal-duration='1000'>
         <GatsbyImage
           image={data.slides[0].asset.gatsbyImageData}
           alt={data.slides[0].alt}
           style={{ display: 'block', width: '100%' }}
         />
-      </div>
-      <div className='front'>
-        <div>
-          <div data-sal='fade' data-sal-duration='1000'>
-            <h2>{data.title}</h2>
-          </div>
-          <div className='sanity-body' data-sal='fade' data-sal-duration='1000'>
+      </ImageContainer>
+      <TextBoxContainer data-sal='fade' data-sal-delay='500' data-sal-duration='1000'>
+        <TextBox>
+          <Title>{data.title}</Title>
+          <TextBoxContent>
             <BlockContent blocks={data._rawBody}></BlockContent>
-          </div>
-        </div>
-      </div>
-    </div>
+          </TextBoxContent>
+        </TextBox>
+      </TextBoxContainer>
+    </Banner>
   );
 };
 

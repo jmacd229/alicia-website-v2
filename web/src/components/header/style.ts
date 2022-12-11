@@ -19,7 +19,7 @@ const calculateBackToTopPosition = (isMobile?: boolean) =>
     isMobile ? MOBILE_NAV_HEIGHT.COLLAPSED : NAV_HEIGHT.COLLAPSED
   } / 2) - ${spacing(isMobile ? 3 : 2)})`;
 
-const titleHeight = css`
+const titleHeight = css<{ collapsed: boolean }>`
   height: ${({ collapsed }) =>
     collapsed ? MOBILE_NAV_HEIGHT.COLLAPSED : MOBILE_NAV_HEIGHT.EXPANDED};
 
@@ -29,7 +29,7 @@ const titleHeight = css`
   }
 `;
 
-const navPadding = css`
+const navPadding = css<{ collapsed: boolean }>`
   padding: ${spacing(0.5)};
 
   ${media.medium} {
@@ -199,7 +199,9 @@ export const WorkButton = styled(Button)`
   cursor: pointer;
   overflow: hidden;
   transform: translateZ(0); // Fix for Safari
+  line-height: ${fontSize('sm')};
   > span {
+    width: 100%;
     z-index: 1;
   }
   &:hover {
