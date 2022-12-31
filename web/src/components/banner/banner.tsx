@@ -15,7 +15,7 @@ const BannerContainer = () => {
         image {
           alt
           asset {
-            gatsbyImageData(height: 700, placeholder: BLURRED)
+            gatsbyImageData(height: 1700, placeholder: BLURRED)
           }
         }
       }
