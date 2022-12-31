@@ -7,12 +7,12 @@ import './banner.scss';
 const BannerContainer = () => {
   const [yOffset, setYOffset] = useState(0);
   const data = useStaticQuery(graphql`
-    query MyQuery {
-      sanityCarousel {
+    query BannerQuery {
+      sanityBanner {
         subtitle
         title
         _rawBody
-        slides {
+        image {
           alt
           asset {
             gatsbyImageData(height: 700, placeholder: BLURRED)
@@ -20,7 +20,7 @@ const BannerContainer = () => {
         }
       }
     }
-  `).sanityCarousel;
+  `).sanityBanner;
 
   useEffect(() => {
     const onScroll = e => setYOffset(e.target.documentElement.scrollTop);
@@ -33,8 +33,8 @@ const BannerContainer = () => {
     <div className='banner'>
       <div className='img-container' style={{ top: `-${yOffset / 2}px` }}>
         <GatsbyImage
-          image={data.slides[0].asset.gatsbyImageData}
-          alt={data.slides[0].alt}
+          image={data.image.asset.gatsbyImageData}
+          alt={data.image.alt}
           style={{ display: 'block', width: '100%' }}
         />
       </div>
