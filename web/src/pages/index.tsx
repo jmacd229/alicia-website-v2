@@ -13,7 +13,7 @@ import { graphql, useStaticQuery } from 'gatsby';
 const IndexPage = () => {
   const data = useStaticQuery(graphql`
   query PageQuery {
-    allSanityCarousel {
+    allSanityBanner {
       edges {
         node {
           visible
