@@ -10,8 +10,8 @@ const AboutMe = () => {
       sanityAboutMe {
         _rawBody
         title {
-          regular
-          cursive
+          fontType
+          text
         }
         image {
           alt
@@ -30,9 +30,11 @@ const AboutMe = () => {
           className='mixed-font-title'
           data-sal='fade'
           data-sal-duration='500'>
-          <div>{data.title.regular}</div>
-          <div className='cursive'>{data.title.cursive}</div>
-          <div>.</div>
+          {data.title.map(({ fontType, text }) => (
+            <div key={text} className={fontType}>
+              {text}
+            </div>
+          ))}
         </h3>
         <div className='d-flex justify-content-center'>
           <div className='d-flex flex-column flex-md-row align-items-center'>

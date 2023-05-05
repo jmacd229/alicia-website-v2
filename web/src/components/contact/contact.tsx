@@ -64,8 +64,8 @@ const Contact = () => {
     query ContactQuery {
       sanityContact {
         title {
-          regular
-          cursive
+          fontType
+          text
         }
         methods {
           sanityId
@@ -136,13 +136,15 @@ const Contact = () => {
             const day = days.find(day => day.text === key);
             if (day) {
               return (
-                <Tooltip key={key} overlay={value + (day.virtual ? " Virtual" : '')}>
+                <Tooltip
+                  key={key}
+                  overlay={value + (day.virtual ? ' Virtual' : '')}>
                   <div
                     tabIndex={0}
                     role='listitem'
                     aria-disabled={false}
-                    className={'day' + (day.virtual ? " virtually" : '')}
-                    aria-label={value + (day.virtual ? " Virtual" : '')}>
+                    className={'day' + (day.virtual ? ' virtually' : '')}
+                    aria-label={value + (day.virtual ? ' Virtual' : '')}>
                     {value.charAt(0)}
                   </div>
                 </Tooltip>
@@ -215,8 +217,11 @@ const Contact = () => {
       <div className='main'>
         <div className='title-card order-2'>
           <h3 className='mixed-font-title'>
-            <span>{data.title.regular}</span>
-            <span className='cursive'>{data.title.cursive}</span>
+            {data.title.map(({ fontType, text }) => (
+              <div key={text} className={fontType}>
+                {text}
+              </div>
+            ))}
           </h3>
         </div>
         <div className='methods-container'>
