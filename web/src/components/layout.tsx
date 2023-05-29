@@ -15,7 +15,6 @@ const Layout = ({ sections, children }) => {
       <Header sections={sections} />
       <main>
         {children}
-        {isProd ? <Chat /> : null}
       </main>
       <Footer></Footer>
     </>

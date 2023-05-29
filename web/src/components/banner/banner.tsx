@@ -10,7 +10,10 @@ const BannerContainer = () => {
     query BannerQuery {
       sanityBanner {
         subtitle
-        title
+        title {
+          fontType
+          text
+        }
         _rawBody
         image {
           alt
@@ -41,7 +44,13 @@ const BannerContainer = () => {
       <div className='front'>
         <div>
           <div data-sal='fade' data-sal-duration='1000'>
-            <h2>{data.title}</h2>
+            <h2>
+              {data.title.map(({ text }) => (
+                <div key={text} className="regular">
+                  {text}
+                </div>
+              ))}
+            </h2>
           </div>
           <div className='sanity-body' data-sal='fade' data-sal-duration='1000'>
             <BlockContent blocks={data._rawBody}></BlockContent>
